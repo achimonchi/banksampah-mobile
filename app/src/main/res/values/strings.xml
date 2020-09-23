@@ -1,5 +1,20 @@
 <resources>
     <string name="app_name">BASADA</string>
+    <string name="content_register">Register</string>
+    <string name="content_login">Login</string>
     <string name="content_login_email">Email</string>
     <string name="content_login_password">Password</string>
+    <string name="content_login_confirm_password">Confirm Password</string>
+
+    <string name="profil_nama">Nama</string>
+    <string name="profil_nohp">Nomor Ponsel</string>
+
+    <string name="simpan">Simpan</string>
+    <string name="ubah_password">Ubah Password</string>
+
+    <string name="beranda">Beranda</string>
+    <string name="riwayat">Riwayat</string>
+    <string name="bantuan">Bantuan</string>
+    <string name="akun">Akun</string>
+
 </resources>

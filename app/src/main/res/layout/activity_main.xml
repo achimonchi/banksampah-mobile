@@ -4,17 +4,30 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".ui.activity.MainActivity">
 
     <FrameLayout
         android:id="@+id/framelayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@id/bottom_navigation" />
+        android:layout_above="@id/bottom_navigation" >
+
+        <fragment
+            android:id="@+id/menuNavHostFragment"
+            android:name="androidx.navigation.fragment.NavHostFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:defaultNavHost="true"
+            app:navGraph="@navigation/menu_nav_graph"
+            />
+
+    </FrameLayout>
+
+
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"
-        style="@style/Widget.MaterialComponents.BottomNavigationView.Colored"
+        style="@style/Widget.MaterialComponents.BottomNavigationView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"

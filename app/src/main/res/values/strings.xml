@@ -17,4 +17,11 @@
     <string name="bantuan">Bantuan</string>
     <string name="akun">Akun</string>
 
+    <string name="data_nama_lengkap">Nama Lengkap</string>
+    <string name="data_no_hp">Nomor Telepon</string>
+    <string name="data_alamat">Alamat</string>
+    <string name="data_provinsi">Provinsi</string>
+    <string name="data_kota">Kota</string>
+    <string name="data_kodepos">Kode Pos</string>
+
 </resources>

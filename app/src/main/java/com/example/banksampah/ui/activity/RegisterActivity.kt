@@ -1,9 +1,10 @@
-package com.example.banksampah
+package com.example.banksampah.ui.activity
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import com.example.banksampah.R
 import kotlinx.android.synthetic.main.activity_register.*
 
 class RegisterActivity : AppCompatActivity(), View.OnClickListener {

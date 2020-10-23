@@ -1,11 +1,397 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/colorBackground">
 
-    <TextView
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/consLayout1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/round_rect_shape"
+        android:elevation="8dp"
+        android:paddingBottom="24dp"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/appName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="36dp"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/montserrat_alternates_black"
+            android:text="@string/app_name"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="32sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/jualSampah"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="20dp"
+            android:background="?selectableItemBackground"
+            app:cardCornerRadius="16dp"
+            app:layout_constraintEnd_toStartOf="@id/saldo"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/appName">
+
+            <ImageView
+                android:layout_width="72dp"
+                android:layout_height="72dp"
+                android:layout_gravity="center"
+                android:padding="8dp"
+                android:src="@drawable/receive_cash" />
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <TextView
+            android:id="@+id/textJualSampah"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:fontFamily="sans-serif"
+            android:text="Jual Sampah"
+            android:textAlignment="center"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="@id/jualSampah"
+            app:layout_constraintStart_toStartOf="@id/jualSampah"
+            app:layout_constraintTop_toBottomOf="@id/jualSampah" />
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/saldo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="20dp"
+            android:layout_marginStart="36dp"
+            android:background="?selectableItemBackground"
+            app:cardCornerRadius="16dp"
+            app:layout_constraintEnd_toStartOf="@id/lainnya"
+            app:layout_constraintStart_toEndOf="@id/jualSampah"
+            app:layout_constraintTop_toBottomOf="@id/appName">
+
+            <ImageView
+                android:layout_width="72dp"
+                android:layout_height="72dp"
+                android:layout_gravity="center"
+                android:padding="8dp"
+                android:src="@drawable/wallet" />
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:fontFamily="sans-serif"
+            android:text="Saldo"
+            android:textAlignment="center"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="@id/saldo"
+            app:layout_constraintStart_toStartOf="@id/saldo"
+            app:layout_constraintTop_toBottomOf="@id/saldo" />
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/lainnya"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="20dp"
+            android:layout_marginStart="36dp"
+            android:background="?selectableItemBackground"
+            app:cardCornerRadius="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/saldo"
+            app:layout_constraintTop_toBottomOf="@id/appName">
+
+            <ImageView
+                android:layout_width="72dp"
+                android:layout_height="72dp"
+                android:layout_gravity="center"
+                android:padding="8dp"
+                android:src="@drawable/network" />
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:fontFamily="sans-serif"
+            android:text="Lainnya"
+            android:textAlignment="center"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="@id/lainnya"
+            app:layout_constraintStart_toStartOf="@id/lainnya"
+            app:layout_constraintTop_toBottomOf="@id/lainnya" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/consLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/round_rect_color"
+        android:paddingBottom="20dp"
+        app:layout_constraintTop_toTopOf="@+id/guideline5">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/pickUp"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="24dp"
+            android:src="@drawable/dump_truck"
+            app:civ_border_color="@color/colorPrimaryDark"
+            app:civ_border_width="1dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/guideline6" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="26dp" />
+
+        <TextView
+            android:id="@+id/pickUpText1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="@id/pickUp"
+            app:layout_constraintStart_toEndOf="@id/pickUp"
+            app:layout_constraintBottom_toTopOf="@id/pickUpText2"
+            android:layout_marginStart="20sp"
+            app:layout_constraintVertical_chainStyle="packed"
+            android:text="Instan Pick-Up"
+            android:fontFamily="sans-serif"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:textColor="@color/colorAccent" />
+
+        <TextView
+            android:id="@+id/pickUpText2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20sp"
+            android:fontFamily="sans-serif"
+            android:text="Scan barcode dan transaksi ditempat"
+            android:textColor="@color/colorAccent"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="@+id/pickUp"
+            app:layout_constraintStart_toEndOf="@id/pickUp"
+            app:layout_constraintTop_toBottomOf="@id/pickUpText1" />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/antar"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="24dp"
+            android:src="@drawable/waste_separation"
+            app:civ_border_color="@color/colorPrimaryDark"
+            app:civ_border_width="1dp"
+            app:layout_constraintTop_toBottomOf="@id/pickUp"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/antarText1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="@id/antar"
+            app:layout_constraintStart_toEndOf="@id/antar"
+            app:layout_constraintBottom_toTopOf="@id/antarText2"
+            app:layout_constraintVertical_chainStyle="packed"
+            android:layout_marginStart="20sp"
+            android:text="Antar ke Drop-Point"
+            android:textStyle="bold"
+            android:fontFamily="sans-serif"
+            android:textSize="16sp"
+            android:textColor="@color/colorAccent" />
+
+        <TextView
+            android:id="@+id/antarText2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20sp"
+            android:fontFamily="sans-serif"
+            android:text="Temukan Drop Point disekitaranmu!"
+            android:textColor="@color/colorAccent"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="@+id/antar"
+            app:layout_constraintStart_toEndOf="@id/antar"
+            app:layout_constraintTop_toBottomOf="@+id/antarText1" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="ini fragment home"/>
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="164dp" />
 
-</LinearLayout>
+     <TextView
+         android:id="@+id/katalogText1"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         app:layout_constraintTop_toBottomOf="@id/consLayout2"
+         app:layout_constraintStart_toStartOf="parent"
+         android:text="Lihat Katalog"
+         android:textSize="16sp"
+         android:textStyle="bold"
+         android:fontFamily="sans-serif"
+         android:layout_marginStart="20dp"
+         android:layout_marginTop="20dp" />
+
+    <TextView
+        android:id="@+id/katalogText2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/katalogText1"
+        app:layout_constraintStart_toStartOf="parent"
+        android:text="Kumpulan daftar barang yang kami terima"
+        android:textSize="12sp"
+        android:fontFamily="sans-serif"
+        android:layout_marginStart="20dp"/>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/kertas"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="20dp"
+        android:background="?selectableItemBackground"
+        app:cardCornerRadius="16dp"
+        app:layout_constraintHorizontal_chainStyle="spread"
+        app:layout_constraintEnd_toStartOf="@id/logam"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/katalogText2">
+
+        <ImageView
+            android:layout_width="72dp"
+            android:layout_height="72dp"
+            android:layout_gravity="center"
+            android:padding="8dp"
+            android:src="@drawable/documents" />
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <TextView
+        android:id="@+id/kertasText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:fontFamily="sans-serif"
+        android:text="Kertas"
+        android:textAlignment="center"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="@id/kertas"
+        app:layout_constraintStart_toStartOf="@id/kertas"
+        app:layout_constraintTop_toBottomOf="@id/kertas" />
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/logam"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="20dp"
+        android:background="?selectableItemBackground"
+        app:cardCornerRadius="16dp"
+        app:layout_constraintEnd_toStartOf="@id/plastik"
+        app:layout_constraintStart_toEndOf="@id/kertas"
+        app:layout_constraintTop_toBottomOf="@id/katalogText2">
+
+        <ImageView
+            android:layout_width="72dp"
+            android:layout_height="72dp"
+            android:layout_gravity="center"
+            android:padding="8dp"
+            android:src="@drawable/steel" />
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <TextView
+        android:id="@+id/logamText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:fontFamily="sans-serif"
+        android:text="Logam"
+        android:textAlignment="center"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="@id/logam"
+        app:layout_constraintStart_toStartOf="@id/logam"
+        app:layout_constraintTop_toBottomOf="@id/logam" />
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/plastik"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="20dp"
+        android:background="?selectableItemBackground"
+        app:cardCornerRadius="16dp"
+        app:layout_constraintEnd_toStartOf="@id/katalogLainnya"
+        app:layout_constraintStart_toEndOf="@id/logam"
+        app:layout_constraintTop_toBottomOf="@id/katalogText2">
+
+        <ImageView
+            android:layout_width="72dp"
+            android:layout_height="72dp"
+            android:layout_gravity="center"
+            android:padding="8dp"
+            android:src="@drawable/plastic" />
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <TextView
+        android:id="@+id/plastikText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:fontFamily="sans-serif"
+        android:text="Plastik"
+        android:textAlignment="center"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="@id/plastik"
+        app:layout_constraintStart_toStartOf="@id/plastik"
+        app:layout_constraintTop_toBottomOf="@id/plastik" />
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/katalogLainnya"
+        android:layout_width="72dp"
+        android:layout_height="72dp"
+        android:layout_marginVertical="20dp"
+        android:background="?selectableItemBackground"
+        app:cardCornerRadius="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/plastik"
+        app:layout_constraintTop_toBottomOf="@id/katalogText2">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:padding="8dp"
+            android:text="9+" />
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <TextView
+        android:id="@+id/katalogLainnyaText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:fontFamily="sans-serif"
+        android:text="Lainnya"
+        android:textAlignment="center"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="@id/katalogLainnya"
+        app:layout_constraintStart_toStartOf="@id/katalogLainnya"
+        app:layout_constraintTop_toBottomOf="@id/katalogLainnya" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

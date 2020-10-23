@@ -24,4 +24,14 @@
     <string name="data_kota">Kota</string>
     <string name="data_kodepos">Kode Pos</string>
 
+    <string name="deskripsi">Tombol Back Toolbar</string>
+
+    <string-array name="nama_tab">
+        <item>Plastik Warna</item>
+        <item>Plastik Bening</item>
+        <item>Kertas</item>
+        <item>Logam</item>
+        <item>Elektronik</item>
+    </string-array>
+
 </resources>

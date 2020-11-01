@@ -5,6 +5,10 @@
     app:startDestination="@id/homeFragment">
 
     <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.example.banksampah.ui.fragment.HomeFragment"
+        android:label="HomeFragment" />
+    <fragment
         android:id="@+id/akunFragment"
         android:name="com.example.banksampah.ui.fragment.AkunFragment"
         android:label="AkunFragment" />
@@ -13,11 +17,8 @@
         android:name="com.example.banksampah.ui.fragment.BantuanFragment"
         android:label="BantuanFragment" />
     <fragment
-        android:id="@+id/homeFragment"
-        android:name="com.example.banksampah.ui.fragment.HomeFragment"
-        android:label="HomeFragment"/>
-    <fragment
         android:id="@+id/riwayatFragment"
         android:name="com.example.banksampah.ui.fragment.RiwayatFragment"
         android:label="RiwayatFragment" />
+
 </navigation>

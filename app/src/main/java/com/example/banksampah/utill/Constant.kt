@@ -2,6 +2,6 @@ package com.example.banksampah.utill
 
 object Constant {
 
-    const val BASE_URL = "192.168.100.3/bank-sampah/backend/mobile/"
+    const val BASE_URL = "http://192.168.10.23/bank-sampah/backend/mobile/"
 
 }

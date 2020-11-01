@@ -1,6 +1,7 @@
 package com.example.banksampah.api
 
 import com.example.banksampah.utill.Constant.BASE_URL
+import com.google.gson.GsonBuilder
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -18,9 +19,13 @@ class RetrofitInstance {
                 .addInterceptor(interceptor)
                 .build()
 
+            val gson = GsonBuilder()
+                .setLenient()
+                .create()
+
             Retrofit.Builder()
                 .baseUrl(BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create(gson))
                 .client(client)
                 .build()
         }

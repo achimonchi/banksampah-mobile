@@ -6,7 +6,7 @@
     <RelativeLayout
         android:id="@+id/actionBar"
         android:layout_width="match_parent"
-        android:layout_height="?actionBarSize"
+        android:layout_height="64dp"
         android:paddingVertical="8dp"
         android:paddingHorizontal="16dp">
 
@@ -88,6 +88,7 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <Button
+                android:backgroundTint="@color/colorPrimaryDark"
                 android:layout_marginTop="16dp"
                 android:padding="10dp"
                 android:id="@+id/btn_changeProfile"

@@ -1,4 +1,4 @@
-package com.example.banksampah.ui
+package com.example.banksampah.ui.viewmodel.factory
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider

@@ -10,9 +10,18 @@ data class AuthResponse(
     var status: Int? = 0
 ) {
     data class Data(
+        @SerializedName("data")
+        var `data`: Data? = Data(),
         @SerializedName("message")
         var message: String? = "",
         @SerializedName("token")
         var token: String? = ""
-    )
+    ) {
+        data class Data(
+            @SerializedName("email")
+            var email: String? = "",
+            @SerializedName("role")
+            var role: String? = ""
+        )
+    }
 }

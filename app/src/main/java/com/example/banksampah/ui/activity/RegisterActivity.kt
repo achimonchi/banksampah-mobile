@@ -6,9 +6,11 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import com.example.banksampah.R
 import com.example.banksampah.model.Auth
 import com.example.banksampah.repository.MainRepository
+import com.example.banksampah.ui.viewmodel.factory.MainViewModelFactory
 import com.example.banksampah.ui.viewmodel.MainViewModel
 import com.example.banksampah.utill.Resource
 import kotlinx.android.synthetic.main.activity_register.*
@@ -24,8 +26,9 @@ class RegisterActivity : AppCompatActivity(), View.OnClickListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
 
-        val mainRepository = MainRepository()
-        mainViewModel = MainViewModel(mainRepository)
+        val repository = MainRepository()
+        val viewModelFactory = MainViewModelFactory(repository)
+        mainViewModel = ViewModelProvider(this, viewModelFactory).get(MainViewModel::class.java)
 
         tv_login.setOnClickListener(this)
         btn_daftar.setOnClickListener(this)
@@ -43,7 +46,7 @@ class RegisterActivity : AppCompatActivity(), View.OnClickListener {
                 val confirmPassword = txt_confirmPassword.text.toString()
 
                 if (password == confirmPassword) {
-                    mainViewModel.singup(Auth(email, password))
+                    mainViewModel.signup(Auth(email, password))
                     mainViewModel.userSignIn.observe(this, Observer { response ->
                         when (response) {
                             is Resource.Success -> {

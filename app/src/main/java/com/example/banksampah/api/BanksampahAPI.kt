@@ -1,7 +1,6 @@
 package com.example.banksampah.api
 
-import com.example.banksampah.model.Auth
-import com.example.banksampah.model.AuthResponse
+import com.example.banksampah.model.*
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.GET
@@ -18,11 +17,22 @@ interface BanksampahAPI {
     @POST("auth/signup")
     suspend fun authSignup(
         @Body auth: Auth
-    ) : Response<AuthResponse>
+    ): Response<AuthResponse>
 
-    @GET("nasabah/get_saldo")
+    @GET("nasabah/get_nasabah")
     suspend fun getNasabah(
-        @Header("email") token: String
-    )
+        @Header("token") token: String
+    ): Response<Nasabah>
+
+    @POST("nasabah/update_nasabah")
+    suspend fun updateNasabah(
+        @Header("token") token: String,
+        @Body nasabah: NasabahUpdate
+    ): Response<NasabahResponse>
+
+    @GET("sampah/get_kategori")
+    suspend fun getSampahCategory(
+        @Header("token") token: String
+    ): Response<SampahResponse>
 
 }

@@ -3,30 +3,36 @@ package com.example.banksampah.ui.activity
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
-import androidx.navigation.findNavController
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.banksampah.R
+import com.example.banksampah.repository.MainRepository
+import com.example.banksampah.ui.viewmodel.factory.MainViewModelFactory
+import com.example.banksampah.ui.viewmodel.MainViewModel
 import com.example.banksampah.utill.Session
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(R.layout.activity_main) {
 
     lateinit var session: Session
+    lateinit var mainViewModel: MainViewModel
     var doubleBackPressed = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
 
+        val repository = MainRepository()
+        val viewModelFactory = MainViewModelFactory(repository)
         session = Session(this)
 
-        bottom_navigation.setupWithNavController(menuNavHostFragment.findNavController())
+        mainViewModel = ViewModelProvider(this, viewModelFactory).get(MainViewModel::class.java)
+        mainViewModel.getNasabah(session.token!!)
 
-        Toast.makeText(this, session.token, Toast.LENGTH_SHORT).show()
+        bottom_navigation.setupWithNavController(menuNavHostFragment.findNavController())
     }
 
     override fun onBackPressed() {

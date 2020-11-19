@@ -12,20 +12,19 @@ import com.example.banksampah.ui.activity.MainActivity
 import com.example.banksampah.ui.viewmodel.MainViewModel
 import com.example.banksampah.utill.Converter
 import com.example.banksampah.utill.Resource
-import com.example.banksampah.utill.Session
-import kotlinx.android.synthetic.main.activity_edit_profile.*
+import com.example.banksampah.utill.Session3
 import kotlinx.android.synthetic.main.fragment_akun.*
 import java.lang.StringBuilder
 
 class AkunFragment : Fragment(R.layout.fragment_akun), View.OnClickListener {
 
-    lateinit var session: Session
+    lateinit var session3: Session3
     lateinit var mainViewModel: MainViewModel
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        session = Session(requireContext())
+        session3 = Session3(requireContext())
 
         mainViewModel = (requireActivity() as MainActivity).mainViewModel
         mainViewModel.userData.observe(viewLifecycleOwner, Observer {
@@ -57,8 +56,8 @@ class AkunFragment : Fragment(R.layout.fragment_akun), View.OnClickListener {
     override fun onClick(v: View?) {
         when (v?.id) {
             R.id.btn_logout_akun -> {
-                if (session.token != "") {
-                    session.token = ""
+                if (session3.token != "") {
+                    session3.token = ""
 
                     requireActivity().finish()
 

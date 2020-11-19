@@ -13,7 +13,7 @@ import com.example.banksampah.repository.MainRepository
 import com.example.banksampah.ui.viewmodel.factory.MainViewModelFactory
 import com.example.banksampah.ui.viewmodel.MainViewModel
 import com.example.banksampah.utill.Resource
-import com.example.banksampah.utill.Session
+import com.example.banksampah.utill.Session3
 import kotlinx.android.synthetic.main.activity_verify.*
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.delay
@@ -24,7 +24,7 @@ import java.net.HttpURLConnection.HTTP_UNAUTHORIZED
 class VerifyActivity : AppCompatActivity(R.layout.activity_verify), View.OnClickListener {
 
     private lateinit var mainViewModel: MainViewModel
-    private lateinit var session: Session
+    private lateinit var session3: Session3
     private var doubleBackPressed = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,9 +34,9 @@ class VerifyActivity : AppCompatActivity(R.layout.activity_verify), View.OnClick
         val viewModelFactory = MainViewModelFactory(repository)
         mainViewModel = ViewModelProvider(this, viewModelFactory).get(MainViewModel::class.java)
 
-        session = Session(this)
+        session3 = Session3(this)
 
-        Toast.makeText(this, session.token, Toast.LENGTH_SHORT).show()
+        Toast.makeText(this, session3.token, Toast.LENGTH_SHORT).show()
 
         btn_changeProfile.setOnClickListener(this)
     }
@@ -60,7 +60,7 @@ class VerifyActivity : AppCompatActivity(R.layout.activity_verify), View.OnClick
                     nContact = noHp
                 )
 
-                mainViewModel.updateNasabah(session.token!!, nasabah)
+                mainViewModel.updateNasabah(session3.token!!, nasabah)
                 mainViewModel.nasabahUpdate.observe(this, Observer { response ->
                     when (response) {
                         is Resource.Success -> {
@@ -101,7 +101,7 @@ class VerifyActivity : AppCompatActivity(R.layout.activity_verify), View.OnClick
 
         if (doubleBackPressed) {
             toast.cancel()
-            session.token = ""
+            session3.token = ""
             finish()
         }
 

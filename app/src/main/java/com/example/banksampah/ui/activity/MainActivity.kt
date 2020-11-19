@@ -10,7 +10,7 @@ import com.example.banksampah.R
 import com.example.banksampah.repository.MainRepository
 import com.example.banksampah.ui.viewmodel.factory.MainViewModelFactory
 import com.example.banksampah.ui.viewmodel.MainViewModel
-import com.example.banksampah.utill.Session
+import com.example.banksampah.utill.Session3
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.delay
@@ -18,7 +18,7 @@ import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity(R.layout.activity_main) {
 
-    lateinit var session: Session
+    lateinit var session3: Session3
     lateinit var mainViewModel: MainViewModel
     var doubleBackPressed = false
 
@@ -27,10 +27,10 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
 
         val repository = MainRepository()
         val viewModelFactory = MainViewModelFactory(repository)
-        session = Session(this)
+        session3 = Session3(this)
 
         mainViewModel = ViewModelProvider(this, viewModelFactory).get(MainViewModel::class.java)
-        mainViewModel.getNasabah(session.token!!)
+        mainViewModel.getNasabah(session3.token!!)
 
         bottom_navigation.setupWithNavController(menuNavHostFragment.findNavController())
     }

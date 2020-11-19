@@ -1,7 +1,6 @@
 package com.example.banksampah.ui.activity
 
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -12,12 +11,12 @@ import com.example.banksampah.ui.adapter.KatalogPagerAdapter
 import com.example.banksampah.ui.viewmodel.KatalogViewModel
 import com.example.banksampah.ui.viewmodel.factory.KatalogViewModelFactory
 import com.example.banksampah.utill.Resource
-import com.example.banksampah.utill.Session
+import com.example.banksampah.utill.Session3
 import kotlinx.android.synthetic.main.activity_katalog.*
 
 class KatalogActivity : AppCompatActivity(R.layout.activity_katalog) {
 
-    lateinit var session: Session
+    lateinit var session3: Session3
     private lateinit var katalogViewModel: KatalogViewModel
     private lateinit var adapter: KatalogPagerAdapter
 
@@ -27,7 +26,7 @@ class KatalogActivity : AppCompatActivity(R.layout.activity_katalog) {
         val repository = MainRepository()
         val viewModelFactory = KatalogViewModelFactory(repository)
 
-        session = Session(this)
+        session3 = Session3(this)
         katalogViewModel =
             ViewModelProvider(this, viewModelFactory).get(KatalogViewModel::class.java)
 
@@ -35,7 +34,7 @@ class KatalogActivity : AppCompatActivity(R.layout.activity_katalog) {
 
         adapter = KatalogPagerAdapter(supportFragmentManager, listTab)
 
-        katalogViewModel.getSampahCategory(session.token!!)
+        katalogViewModel.getSampahCategory(session3.token!!)
         katalogViewModel.sampahCategory.observe(this, Observer {
             when(it) {
                 is Resource.Success -> {

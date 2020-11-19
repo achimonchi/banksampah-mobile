@@ -2,7 +2,10 @@ package com.example.banksampah.repository
 
 import com.example.banksampah.api.RetrofitInstance
 import com.example.banksampah.model.Auth
+import com.example.banksampah.model.AuthResponse
 import com.example.banksampah.model.NasabahUpdate
+import com.example.banksampah.utill.NetworkResponse
+import com.example.banksampah.utill.Resource
 
 class MainRepository {
 

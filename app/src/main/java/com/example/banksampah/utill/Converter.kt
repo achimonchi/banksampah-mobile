@@ -5,7 +5,7 @@ import java.text.DecimalFormatSymbols
 
 object Converter {
 
-    fun intToString(jumlah: Int): String {
+    fun convertToRp(jumlah: String): String {
         val kurs = (DecimalFormat.getCurrencyInstance() as DecimalFormat)
         val format = DecimalFormatSymbols().apply {
             currencySymbol = "Rp. "
@@ -15,7 +15,7 @@ object Converter {
 
         kurs.decimalFormatSymbols = format
 
-        return kurs.format(jumlah)
+        return kurs.format(jumlah.toInt())
     }
 
 }

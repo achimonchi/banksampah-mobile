@@ -11,17 +11,17 @@ data class Nasabah(
     @SerializedName("isExist")
     var isExist: String? = "",
     @SerializedName("n_address")
-    var nAddress: Any? = Any(),
+    var nAddress: String? = "",
     @SerializedName("n_balance")
     var nBalance: String? = "",
     @SerializedName("n_city")
-    var nCity: Any? = Any(),
+    var nCity: String? = "",
     @SerializedName("n_contact")
-    var nContact: Any? = Any(),
+    var nContact: String? = "",
     @SerializedName("n_name")
-    var nName: Any? = Any(),
+    var nName: String? = "",
     @SerializedName("n_postcode")
-    var nPostcode: Any? = Any(),
+    var nPostcode: String? = "",
     @SerializedName("n_province")
-    var nProvince: Any? = Any()
+    var nProvince: String? = ""
 )

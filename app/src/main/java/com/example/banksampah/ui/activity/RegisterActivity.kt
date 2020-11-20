@@ -3,86 +3,66 @@ package com.example.banksampah.ui.activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
 import android.widget.Toast
+import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.banksampah.R
-import com.example.banksampah.model.Auth
-import com.example.banksampah.repository.MainRepository
-import com.example.banksampah.ui.viewmodel.factory.MainViewModelFactory
-import com.example.banksampah.ui.viewmodel.MainViewModel
-import com.example.banksampah.utill.Resource
-import kotlinx.android.synthetic.main.activity_register.*
-import kotlinx.android.synthetic.main.activity_register.txt_password
-import java.net.HttpURLConnection.HTTP_OK
-import java.net.HttpURLConnection.HTTP_UNAUTHORIZED
+import com.example.banksampah.databinding.ActivityRegisterBinding
+import com.example.banksampah.ui.viewmodel.RegisterViewModel
 
-class RegisterActivity : AppCompatActivity(), View.OnClickListener {
+class RegisterActivity : AppCompatActivity() {
 
-    private lateinit var mainViewModel: MainViewModel
+    private lateinit var registerViewModel: RegisterViewModel
+    private lateinit var dataBinding: ActivityRegisterBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_register)
+        dataBinding = DataBindingUtil.setContentView(this, R.layout.activity_register)
 
-        val repository = MainRepository()
-        val viewModelFactory = MainViewModelFactory(repository)
-        mainViewModel = ViewModelProvider(this, viewModelFactory).get(MainViewModel::class.java)
+        registerViewModel =
+            ViewModelProvider(this).get(RegisterViewModel::class.java)
 
-        tv_login.setOnClickListener(this)
-        btn_daftar.setOnClickListener(this)
+        dataBinding.apply {
+            lifecycleOwner = this@RegisterActivity
+            viewModel = registerViewModel
+        }
+
+        registerViewModel.apply {
+            action.observe(this@RegisterActivity, Observer {
+                when (it) {
+                    RegisterViewModel.ACTION_REGISTER_SUCCESSFULLY -> registerSuccess()
+                    RegisterViewModel.ACTION_REGISTER_FAILED -> registerFailed()
+                    RegisterViewModel.ACTION_REGISTER_TIMEOUT -> registerFailed()
+                    RegisterViewModel.ACTION_REGISTER_PASSWORD_NOT_MATCH -> registerPassNotMatch()
+                }
+            })
+        }
     }
 
-    override fun onClick(v: View?) {
-        when (v?.id) {
-            R.id.tv_login -> {
-                val intent = Intent(this@RegisterActivity, LoginActivity::class.java)
-                startActivity(intent)
-            }
-            R.id.btn_daftar -> {
-                val email = txt_username.text.toString()
-                val password = txt_password.text.toString()
-                val confirmPassword = txt_confirmPassword.text.toString()
+    private fun registerSuccess() {
+        Toast.makeText(
+            this,
+            "Pendaftaran Berhasil!",
+            Toast.LENGTH_SHORT
+        ).show()
+        startActivity(Intent(this, LoginActivity::class.java))
+    }
 
-                if (password == confirmPassword) {
-                    mainViewModel.signup(Auth(email, password))
-                    mainViewModel.userSignIn.observe(this, Observer { response ->
-                        when (response) {
-                            is Resource.Success -> {
-                                response.data?.let { res ->
-                                    when (res.status) {
-                                        HTTP_OK -> {
-                                            Toast.makeText(
-                                                this,
-                                                "Pendaftaran Berhasil!",
-                                                Toast.LENGTH_SHORT
-                                            ).show()
-                                            startActivity(Intent(this, LoginActivity::class.java))
-                                        }
-                                        HTTP_UNAUTHORIZED -> {
-                                            Toast.makeText(
-                                                this,
-                                                res.data!!.message,
-                                                Toast.LENGTH_SHORT
-                                            ).show()
-                                        }
-                                    }
-                                }
-                            }
-                            is Resource.Error -> {
-                                Toast.makeText(this, response.message, Toast.LENGTH_SHORT).show()
-                            }
-                            is Resource.Loading -> {
+    private fun registerFailed() {
+        Toast.makeText(
+            this,
+            "Pendaftaran Gagal!",
+            Toast.LENGTH_SHORT
+        ).show()
+    }
 
-                            }
-                        }
-                    })
-                } else {
-                    Toast.makeText(this, "Password tidak sama", Toast.LENGTH_SHORT).show()
-                }
-            }
-        }
+    private fun registerPassNotMatch() {
+        Toast.makeText(
+            this,
+            "Password tidak sama!",
+            Toast.LENGTH_SHORT
+        ).show()
     }
 
 }

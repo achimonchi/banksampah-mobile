@@ -1,240 +1,262 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/colorBackground">
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.example.banksampah.ui.viewmodel.AkunViewModel" />
+
+    </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/consLayoutProfil"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:background="@color/colorWhite"
-        android:elevation="3dp"
-        android:paddingHorizontal="16dp"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_height="match_parent"
+        android:background="@color/colorBackground">
 
-        <TextView
-            android:id="@+id/heading1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="8dp"
-            android:layout_marginVertical="8dp"
-            android:fontFamily="sans-serif"
-            android:text="Akun"
-            android:textColor="@android:color/black"
-            android:textSize="20sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/consLayoutProfil"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:background="@color/colorWhite"
+            android:elevation="3dp"
+            android:paddingHorizontal="16dp"
+            app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:id="@+id/txtNamaProfil"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="8dp"
-            android:layout_marginVertical="16dp"
-            android:text="Full Name Here"
-            android:textSize="12sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/heading1" />
+            <TextView
+                android:id="@+id/heading1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="8dp"
+                android:layout_marginVertical="8dp"
+                android:fontFamily="sans-serif"
+                android:text="Akun"
+                android:textColor="@android:color/black"
+                android:textSize="20sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/txtNoHpProfil"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="8dp"
-            android:layout_marginVertical="2dp"
-            android:text="+623456789012"
-            android:textSize="12sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/txtNamaProfil" />
+            <TextView
+                android:id="@+id/txtNamaProfil"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="8dp"
+                android:layout_marginVertical="16dp"
+                android:text="@={viewModel.fullNameText}"
+                android:textSize="12sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/heading1"
+                tools:text="Full Name Here" />
 
-        <TextView
-            android:id="@+id/txtEmailProfil"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="8dp"
-            android:layout_marginVertical="2dp"
-            android:text="email@email.com"
-            android:textSize="12sp"
+            <TextView
+                android:id="@+id/txtNoHpProfil"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="8dp"
+                android:layout_marginVertical="2dp"
+                android:text="@={viewModel.phoneNumberText}"
+                android:textSize="12sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/txtNamaProfil"
+                tools:text="+372189231" />
+
+            <TextView
+                android:id="@+id/txtEmailProfil"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="8dp"
+                android:layout_marginVertical="2dp"
+                android:text="@={viewModel.emailText}"
+                android:textSize="12sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/txtNoHpProfil"
+                tools:text="dasdasd@gmail.com" />
+
+            <Button
+                android:id="@+id/edit_button"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="8dp"
+                android:onClick="@{() -> viewModel.ubahProfil()}"
+                android:text="Ubah"
+                android:textSize="10sp"
+                app:layout_constraintBottom_toBottomOf="@id/txtEmailProfil"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/txtNamaProfil" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_marginVertical="16dp"
+                android:background="@color/colorBackground"
+                app:layout_constraintTop_toBottomOf="@id/edit_button" />
+
+            <TextView
+                android:id="@+id/saldo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="8dp"
+                android:layout_marginVertical="24dp"
+                android:text="Saldo"
+                android:textColor="@android:color/black"
+                android:textSize="20sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/txtEmailProfil" />
+
+            <TextView
+                android:id="@+id/txtSaldo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="8dp"
+                android:layout_marginVertical="2dp"
+                android:text="@={viewModel.balanceText}"
+                android:textColor="@android:color/black"
+                android:textSize="24sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/saldo"
+                tools:text="Rp. 0" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layanan"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:layout_marginTop="20dp"
+            android:background="@color/colorWhite"
+            android:elevation="1dp"
+            android:onClick="@{() -> viewModel.ketentuanLayanan()}"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/txtNoHpProfil" />
+            app:layout_constraintTop_toBottomOf="@id/consLayoutProfil">
+
+            <ImageView
+                android:id="@+id/ikon1"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginVertical="16dp"
+                android:src="@drawable/ic_assignment"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:text="Ketentuan Layanan"
+                app:layout_constraintBottom_toBottomOf="@id/ikon1"
+                app:layout_constraintStart_toEndOf="@id/ikon1"
+                app:layout_constraintTop_toTopOf="@id/ikon1" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/privasi"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:layout_marginTop="2dp"
+            android:background="@color/colorWhite"
+            android:elevation="1dp"
+            android:onClick="@{() -> viewModel.kebijakanPrivasi()}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/layanan">
+
+            <ImageView
+                android:id="@+id/ikon2"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginVertical="16dp"
+                android:src="@drawable/ic_security"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:text="Kebijakan Privasi"
+                app:layout_constraintBottom_toBottomOf="@id/ikon2"
+                app:layout_constraintStart_toEndOf="@id/ikon2"
+                app:layout_constraintTop_toTopOf="@id/ikon2" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/penjemputan"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:layout_marginTop="2dp"
+            android:background="@color/colorWhite"
+            android:elevation="1dp"
+            android:onClick="@{() -> viewModel.agentPenjemputan()}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/privasi">
+
+            <ImageView
+                android:id="@+id/ikon3"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginVertical="16dp"
+                android:src="@drawable/ic_people"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:text="Agen Penjemputan"
+                app:layout_constraintBottom_toBottomOf="@id/ikon3"
+                app:layout_constraintStart_toEndOf="@id/ikon3"
+                app:layout_constraintTop_toTopOf="@id/ikon3" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/point"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:layout_marginTop="2dp"
+            android:background="@color/colorWhite"
+            android:elevation="1dp"
+            android:onClick="@{() -> viewModel.dropPoint()}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/penjemputan">
+
+            <ImageView
+                android:id="@+id/ikon4"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginVertical="16dp"
+                android:src="@drawable/ic_home"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:text="Drop Point"
+                app:layout_constraintBottom_toBottomOf="@id/ikon4"
+                app:layout_constraintStart_toEndOf="@id/ikon4"
+                app:layout_constraintTop_toTopOf="@id/ikon4" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <Button
-            android:id="@+id/edit_button"
-            android:layout_width="80dp"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="8dp"
-            android:text="Ubah"
-            android:textSize="10sp"
-            app:layout_constraintBottom_toBottomOf="@id/txtEmailProfil"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/txtNamaProfil" />
-
-        <View
+            android:id="@+id/btn_logout_akun"
             android:layout_width="match_parent"
-            android:layout_height="2dp"
-            android:layout_marginVertical="16dp"
-            android:background="@color/colorBackground"
-            app:layout_constraintTop_toBottomOf="@id/edit_button" />
-
-        <TextView
-            android:id="@+id/saldo"
-            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="8dp"
-            android:layout_marginVertical="24dp"
-            android:text="Saldo"
-            android:textColor="@android:color/black"
-            android:textSize="20sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/txtEmailProfil" />
-
-        <TextView
-            android:id="@+id/txtSaldo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="8dp"
-            android:layout_marginVertical="2dp"
-            android:text="Rp. 0"
-            android:textColor="@android:color/black"
-            android:textSize="24sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/saldo" />
+            android:backgroundTint="@color/colorPrimaryDark"
+            android:onClick="@{() -> viewModel.logout()}"
+            android:text="Logout"
+            app:layout_constraintBottom_toBottomOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/layanan"
-        android:layout_width="match_parent"
-        android:layout_height="56dp"
-        android:layout_marginTop="20dp"
-        android:background="@color/colorWhite"
-        android:elevation="1dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/consLayoutProfil">
-
-        <ImageView
-            android:id="@+id/ikon1"
-            android:layout_width="28dp"
-            android:layout_height="28dp"
-            android:layout_marginHorizontal="16dp"
-            android:layout_marginVertical="16dp"
-            android:src="@drawable/ic_assignment"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:text="Ketentuan Layanan"
-            app:layout_constraintBottom_toBottomOf="@id/ikon1"
-            app:layout_constraintStart_toEndOf="@id/ikon1"
-            app:layout_constraintTop_toTopOf="@id/ikon1" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/privasi"
-        android:layout_width="match_parent"
-        android:layout_height="56dp"
-        android:layout_marginTop="2dp"
-        android:background="@color/colorWhite"
-        android:elevation="1dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/layanan">
-
-        <ImageView
-            android:id="@+id/ikon2"
-            android:layout_width="28dp"
-            android:layout_height="28dp"
-            android:layout_marginHorizontal="16dp"
-            android:layout_marginVertical="16dp"
-            android:src="@drawable/ic_security"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:text="Kebijakan Privasi"
-            app:layout_constraintBottom_toBottomOf="@id/ikon2"
-            app:layout_constraintStart_toEndOf="@id/ikon2"
-            app:layout_constraintTop_toTopOf="@id/ikon2" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/penjemputan"
-        android:layout_width="match_parent"
-        android:layout_height="56dp"
-        android:layout_marginTop="2dp"
-        android:background="@color/colorWhite"
-        android:elevation="1dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/privasi">
-
-        <ImageView
-            android:id="@+id/ikon3"
-            android:layout_width="28dp"
-            android:layout_height="28dp"
-            android:layout_marginHorizontal="16dp"
-            android:layout_marginVertical="16dp"
-            android:src="@drawable/ic_people"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:text="Agen Penjemputan"
-            app:layout_constraintBottom_toBottomOf="@id/ikon3"
-            app:layout_constraintStart_toEndOf="@id/ikon3"
-            app:layout_constraintTop_toTopOf="@id/ikon3" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/point"
-        android:layout_width="match_parent"
-        android:layout_height="56dp"
-        android:layout_marginTop="2dp"
-        android:background="@color/colorWhite"
-        android:elevation="1dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/penjemputan">
-
-        <ImageView
-            android:id="@+id/ikon4"
-            android:layout_width="28dp"
-            android:layout_height="28dp"
-            android:layout_marginHorizontal="16dp"
-            android:layout_marginVertical="16dp"
-            android:src="@drawable/ic_home"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:text="Drop Point"
-            app:layout_constraintBottom_toBottomOf="@id/ikon4"
-            app:layout_constraintStart_toEndOf="@id/ikon4"
-            app:layout_constraintTop_toTopOf="@id/ikon4" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <Button
-        android:id="@+id/btn_logout_akun"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="8dp"
-        android:backgroundTint="@color/colorPrimaryDark"
-        android:text="Logout"
-        app:layout_constraintBottom_toBottomOf="parent" />
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

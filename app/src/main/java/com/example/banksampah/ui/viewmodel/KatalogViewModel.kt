@@ -9,16 +9,14 @@ import com.example.banksampah.utill.Resource
 import kotlinx.coroutines.launch
 import retrofit2.Response
 
-class KatalogViewModel(
-    private val mainRepository: MainRepository
-) : ViewModel() {
+class KatalogViewModel : BaseViewModel() {
 
     val sampahCategory: MutableLiveData<Resource<SampahResponse>> = MutableLiveData()
 
     fun getSampahCategory(token: String) = viewModelScope.launch {
         sampahCategory.postValue(Resource.Loading())
 
-        val response = mainRepository.getSampahCategory(token)
+        val response = repository.getSampahCategory(token)
 
         sampahCategory.postValue(handleGetSampahCategory(response))
     }

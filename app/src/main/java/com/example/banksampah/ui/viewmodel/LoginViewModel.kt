@@ -34,6 +34,7 @@ class LoginViewModel : BaseViewModel() {
                             getProfile()
                         }
                         401 -> {
+                            loadingEnabled.postValue(false)
                             action.postValue(ACTION_PASSWORD_INVALID)
                         }
                     }

@@ -41,28 +41,16 @@ class RegisterActivity : AppCompatActivity() {
     }
 
     private fun registerSuccess() {
-        Toast.makeText(
-            this,
-            "Pendaftaran Berhasil!",
-            Toast.LENGTH_SHORT
-        ).show()
+        Toast.makeText(this, "Pendaftaran Berhasil!", Toast.LENGTH_SHORT).show()
         startActivity(Intent(this, LoginActivity::class.java))
     }
 
     private fun registerFailed() {
-        Toast.makeText(
-            this,
-            "Pendaftaran Gagal!",
-            Toast.LENGTH_SHORT
-        ).show()
+        Toast.makeText(this, "Pendaftaran Gagal!", Toast.LENGTH_SHORT).show()
     }
 
     private fun registerPassNotMatch() {
-        Toast.makeText(
-            this,
-            "Password tidak sama!",
-            Toast.LENGTH_SHORT
-        ).show()
+        Toast.makeText(this, "Password tidak sama!", Toast.LENGTH_SHORT).show()
     }
 
 }

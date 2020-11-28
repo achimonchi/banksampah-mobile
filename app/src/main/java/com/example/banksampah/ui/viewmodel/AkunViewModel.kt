@@ -11,6 +11,8 @@ class AkunViewModel : BaseViewModel() {
 
     companion object {
         const val ACTION_AKUN_LOGOUT = "action_akun_logout"
+        const val ACTION_AKUN_TIMEOUT = "action_akun_timeout"
+        const val ACTION_AKUN_BTN_UBAHCLICK = "action_akun_btn_ubahclick"
     }
 
     val fullNameText = MutableLiveData<String>()
@@ -19,7 +21,7 @@ class AkunViewModel : BaseViewModel() {
     val balanceText = MutableLiveData<String>()
 
     fun ubahProfil() {
-
+        action.value = ACTION_AKUN_BTN_UBAHCLICK
     }
 
     fun ketentuanLayanan() {
@@ -60,6 +62,7 @@ class AkunViewModel : BaseViewModel() {
                 }
                 is Resource.Error -> {
                     loadingEnabled.postValue(false)
+                    action.postValue(ACTION_AKUN_TIMEOUT)
                 }
             }
         }

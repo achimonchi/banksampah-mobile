@@ -11,6 +11,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.banksampah.R
 import com.example.banksampah.databinding.FragmentAkunBinding
+import com.example.banksampah.ui.activity.EditProfileActivity
 import com.example.banksampah.ui.activity.LoginActivity
 import com.example.banksampah.ui.viewmodel.AkunViewModel
 
@@ -23,15 +24,13 @@ class AkunFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         dataBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_akun, container, false)
         akunViewModel = ViewModelProvider(this).get(AkunViewModel::class.java)
         return dataBinding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
         dataBinding.apply {
             lifecycleOwner = this@AkunFragment
             viewModel = akunViewModel
@@ -41,11 +40,25 @@ class AkunFragment : Fragment() {
             action.observe(viewLifecycleOwner, Observer {
                 when (it) {
                     AkunViewModel.ACTION_AKUN_LOGOUT -> akunLogout()
+                    AkunViewModel.ACTION_AKUN_BTN_UBAHCLICK -> btnUbahOnClick()
                 }
             })
             setAkun()
         }
+    }
 
+    override fun onResume() {
+        super.onResume()
+        akunViewModel.setAkun()
+    }
+
+    private fun btnUbahOnClick() {
+        startActivity(
+            Intent(
+                requireContext(),
+                EditProfileActivity::class.java
+            )
+        )
     }
 
     private fun akunLogout() {

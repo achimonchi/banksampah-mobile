@@ -3,6 +3,8 @@
     package="com.example.banksampah">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -33,12 +35,22 @@
             android:launchMode="singleTask"
             android:screenOrientation="portrait" />
 
-        <activity android:name=".ui.activity.KatalogActivity" />
-
         <activity
             android:name=".ui.activity.VerifyActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait" />
+
+        <activity android:name=".ui.activity.KatalogActivity" />
+
+        <activity android:name=".ui.activity.EditProfileActivity" />
+
+        <activity android:name=".ui.activity.ActivityRequest">
+
+        </activity>
+
+        <activity
+            android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
+            android:theme="@style/Base.Theme.AppCompat" />
 
     </application>
 

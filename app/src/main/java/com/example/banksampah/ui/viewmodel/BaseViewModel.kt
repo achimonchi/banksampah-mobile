@@ -6,8 +6,9 @@ import com.example.banksampah.repository.MainRepository
 
 open class BaseViewModel : ViewModel() {
 
+    var repository: MainRepository = MainRepository()
+
     val action = MutableLiveData<String>()
     val loadingEnabled = MutableLiveData<Boolean>()
-    protected val repository = MainRepository()
 
 }

@@ -1,32 +1,43 @@
 package com.example.banksampah.ui.viewmodel
 
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.banksampah.model.SampahResponse
-import com.example.banksampah.repository.MainRepository
+import com.example.banksampah.ui.adapter.KatalogPagerAdapter
 import com.example.banksampah.utill.Resource
+import com.example.banksampah.utill.Session
 import kotlinx.coroutines.launch
-import retrofit2.Response
 
 class KatalogViewModel : BaseViewModel() {
 
-    val sampahCategory: MutableLiveData<Resource<SampahResponse>> = MutableLiveData()
-
-    fun getSampahCategory(token: String) = viewModelScope.launch {
-        sampahCategory.postValue(Resource.Loading())
-
-        val response = repository.getSampahCategory(token)
-
-        sampahCategory.postValue(handleGetSampahCategory(response))
+    companion object {
+        const val ACTION_KATALOG_NAVIGATEUP = "action_katalog_navigateup"
+        const val ACTION_KATALOG_TIMEOUT = "action_katalog_timeout"
     }
 
-    private fun handleGetSampahCategory(response: Response<SampahResponse>): Resource<SampahResponse> {
-        if (response.isSuccessful)
-            response.body()?.let { res ->
-                return Resource.Success(res)
+    fun navigateUp() {
+        action.value = ACTION_KATALOG_NAVIGATEUP
+    }
+
+    fun setTitle(adapter: KatalogPagerAdapter) {
+        loadingEnabled.value = true
+        viewModelScope.launch {
+            when (val response = repository.getSampahCategory(Session.token ?: "")) {
+                is Resource.Success -> {
+                    loadingEnabled.postValue(false)
+                    response.data?.data?.let {
+                        val listTitle: ArrayList<SampahResponse.Data?>? = ArrayList()
+                        listTitle?.addAll(it)
+
+                        adapter.listTab = listTitle
+                        adapter.notifyDataSetChanged()
+                    }
+                }
+                is Resource.Error -> {
+                    loadingEnabled.postValue(false)
+                    action.postValue(ACTION_KATALOG_TIMEOUT)
+                }
             }
-        return Resource.Error(response.message())
+        }
     }
 
 }

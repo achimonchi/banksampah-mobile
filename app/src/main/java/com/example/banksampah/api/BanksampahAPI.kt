@@ -1,11 +1,9 @@
 package com.example.banksampah.api
 
 import com.example.banksampah.model.*
+import okhttp3.RequestBody
 import retrofit2.Response
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.Header
-import retrofit2.http.POST
+import retrofit2.http.*
 
 interface BanksampahAPI {
 
@@ -34,5 +32,20 @@ interface BanksampahAPI {
     suspend fun getSampahCategory(
         @Header("token") token: String
     ): Response<SampahResponse>
+
+    @GET("sampah/get_sampah_by_kategori/{id}")
+    suspend fun getSampahByCategory(
+        @Header("token") token: String,
+        @Path("id") id: String
+    ): Response<SampahKategoryResponse>
+
+    @Multipart
+    @POST("requestsampah/request")
+    suspend fun requestSampah(
+        @Part("fk_garbage") id: RequestBody,
+        @Part("r_weight") weight: RequestBody,
+        @Part("r_image") image: RequestBody,
+        @Part("r_notes") notes: RequestBody
+    ): Response<RequestSampahResponse>
 
 }

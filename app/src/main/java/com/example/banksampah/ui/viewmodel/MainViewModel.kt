@@ -31,7 +31,7 @@ class MainViewModel(
 
         val response = repository.updateNasabah(token, nasabah)
 
-        nasabahUpdate.postValue(handleUpdateNasabah(response))
+//        nasabahUpdate.postValue(handleUpdateNasabah(response))
     }
 
     private fun handleUpdateNasabah(response: Response<NasabahResponse>): Resource<NasabahResponse> {

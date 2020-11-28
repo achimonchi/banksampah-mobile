@@ -2,36 +2,81 @@ package com.example.banksampah.ui.fragment
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import com.example.banksampah.R
+import com.example.banksampah.databinding.FragmentHomeBinding
 import com.example.banksampah.ui.activity.KatalogActivity
-import com.example.banksampah.ui.activity.MainActivity
-import com.example.banksampah.ui.viewmodel.MainViewModel
-import com.example.banksampah.utill.Session3
+import com.example.banksampah.ui.viewmodel.HomeViewModel
 import kotlinx.android.synthetic.main.fragment_home.*
 
-class HomeFragment : Fragment(R.layout.fragment_home), View.OnClickListener {
+class HomeFragment : Fragment() {
 
-    lateinit var session3: Session3
-    lateinit var mainViewModel: MainViewModel
+    lateinit var homeViewModel: HomeViewModel
+    lateinit var dataBinding: FragmentHomeBinding
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        dataBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_home, container, false)
+        homeViewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
+        return dataBinding.root
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        session3 = Session3(requireContext())
-
-        mainViewModel = (requireActivity() as MainActivity).mainViewModel
-
-        kertas.setOnClickListener(this)
-        logam.setOnClickListener(this)
-        plastik.setOnClickListener(this)
-        katalogLainnya.setOnClickListener(this)
-    }
-
-    override fun onClick(v: View?) {
-        when (v?.id) {
-            R.id.kertas -> {
-                startActivity(Intent(requireContext(), KatalogActivity::class.java))
-            }
+        dataBinding.apply {
+            lifecycleOwner = this@HomeFragment
+            viewModel = homeViewModel
         }
+
+        homeViewModel.action.observe(viewLifecycleOwner, Observer {
+            when (it) {
+                HomeViewModel.ACTION_HOME_KTLG_KERTAS -> kertasOnClick()
+                HomeViewModel.ACTION_HOME_KTLG_LOGAM -> logamOnClick()
+                HomeViewModel.ACTION_HOME_KTLG_PLASTIK -> plastikOnClick()
+                HomeViewModel.ACTION_HOME_KTLG_LAINNYA -> lainnyaOnclick()
+            }
+        })
     }
+
+    private fun kertasOnClick() {
+        val intent = Intent(requireContext(), KatalogActivity::class.java).also {
+            it.putExtra(KatalogActivity.ARG_PAGE, 0)
+        }
+
+        startActivity(intent)
+    }
+
+    private fun lainnyaOnclick() {
+        val intent = Intent(requireContext(), KatalogActivity::class.java).also {
+            it.putExtra(KatalogActivity.ARG_PAGE, 1)
+        }
+
+        startActivity(intent)
+    }
+
+    private fun plastikOnClick() {
+        val intent = Intent(requireContext(), KatalogActivity::class.java).also {
+            it.putExtra(KatalogActivity.ARG_PAGE, 2)
+        }
+
+        startActivity(intent)
+    }
+
+    private fun logamOnClick() {
+        val intent = Intent(requireContext(), KatalogActivity::class.java).also {
+            it.putExtra(KatalogActivity.ARG_PAGE, 3)
+        }
+
+        startActivity(intent)
+    }
+
+
 }

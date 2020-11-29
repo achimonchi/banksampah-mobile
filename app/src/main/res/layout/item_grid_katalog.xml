@@ -13,7 +13,7 @@
 
         <variable
             name="viewModel"
-            type="com.example.banksampah.ui.viewmodel.KertasViewModel" />
+            type="com.example.banksampah.ui.viewmodel.TabViewModel" />
 
     </data>
 
@@ -59,7 +59,7 @@
             android:id="@+id/item_list_tv_harga"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{item.JPrice}"
+            android:text="@{item.priceLabel}"
             android:textAlignment="center"
             android:textSize="12sp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -69,4 +69,5 @@
             tools:text="Rp.1,000 kg" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 </layout>

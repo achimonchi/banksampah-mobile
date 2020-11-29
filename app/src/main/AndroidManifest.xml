@@ -40,13 +40,21 @@
             android:launchMode="singleTask"
             android:screenOrientation="portrait" />
 
-        <activity android:name=".ui.activity.KatalogActivity" />
+        <activity
+            android:name=".ui.activity.JualSampahActivity"
+            android:screenOrientation="portrait" />
 
-        <activity android:name=".ui.activity.EditProfileActivity" />
+        <activity
+            android:name=".ui.activity.EditProfileActivity"
+            android:screenOrientation="portrait" />
 
-        <activity android:name=".ui.activity.ActivityRequest">
+        <activity
+            android:name=".ui.activity.RequestActivity"
+            android:screenOrientation="portrait" />
 
-        </activity>
+        <activity
+            android:name=".ui.activity.KatalogActivity"
+            android:screenOrientation="portrait" />
 
         <activity
             android:name="com.theartofdev.edmodo.cropper.CropImageActivity"

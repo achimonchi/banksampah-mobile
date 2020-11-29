@@ -1,5 +1,6 @@
 package com.example.banksampah.utill
 
+import android.net.Uri
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
@@ -8,4 +9,9 @@ import com.bumptech.glide.Glide
 fun ImageView.loadImageFromUrl(url: String?) {
     val fullUrl = Constant.BASE_URL_IMG_SAMPAH + url
     Glide.with(this.context).load(fullUrl).into(this)
+}
+
+@BindingAdapter("setImageWithURI")
+fun ImageView.setImageWithURI(uri: Uri?) {
+    this.setImageURI(uri)
 }

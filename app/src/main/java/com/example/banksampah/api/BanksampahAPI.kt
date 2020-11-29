@@ -1,6 +1,7 @@
 package com.example.banksampah.api
 
 import com.example.banksampah.model.*
+import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Response
 import retrofit2.http.*
@@ -42,9 +43,10 @@ interface BanksampahAPI {
     @Multipart
     @POST("requestsampah/request")
     suspend fun requestSampah(
+        @Header("token") token: String,
         @Part("fk_garbage") id: RequestBody,
         @Part("r_weight") weight: RequestBody,
-        @Part("r_image") image: RequestBody,
+        @Part image: MultipartBody.Part,
         @Part("r_notes") notes: RequestBody
     ): Response<RequestSampahResponse>
 

@@ -43,6 +43,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="20dp"
                 android:background="?selectableItemBackground"
+                android:onClick="@{() -> viewModel.jualSampahOnClick()}"
                 app:cardCornerRadius="16dp"
                 app:layout_constraintEnd_toStartOf="@id/saldo"
                 app:layout_constraintHorizontal_chainStyle="packed"

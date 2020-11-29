@@ -37,14 +37,14 @@ class AkunFragment : Fragment() {
         }
 
         akunViewModel.apply {
-            action.observe(viewLifecycleOwner, Observer {
-                when (it) {
+            action.observe(viewLifecycleOwner, Observer { action ->
+                when (action) {
                     AkunViewModel.ACTION_AKUN_LOGOUT -> akunLogout()
                     AkunViewModel.ACTION_AKUN_BTN_UBAHCLICK -> btnUbahOnClick()
                 }
             })
-            setAkun()
         }
+        akunViewModel.setAkun()
     }
 
     override fun onResume() {

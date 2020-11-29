@@ -2,9 +2,9 @@ package com.example.banksampah.ui.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.example.banksampah.utill.Converter
 import com.example.banksampah.utill.Resource
 import com.example.banksampah.utill.Session
+import com.example.banksampah.utill.Utill
 import kotlinx.coroutines.launch
 
 class AkunViewModel : BaseViewModel() {
@@ -56,7 +56,7 @@ class AkunViewModel : BaseViewModel() {
                         fullNameText.postValue(nasabah.nName)
                         phoneNumberText.postValue(nasabah.nContact)
                         emailText.postValue(nasabah.fkAuth)
-                        balanceText.postValue(Converter.convertToRp(nasabah.nBalance ?: ""))
+                        balanceText.postValue(Utill.stringToRp(nasabah.nBalance ?: ""))
                     }
 
                 }

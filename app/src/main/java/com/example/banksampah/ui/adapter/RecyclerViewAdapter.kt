@@ -7,10 +7,10 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.banksampah.databinding.ItemGridKatalogBinding
 import com.example.banksampah.model.SampahKategoryItem
-import com.example.banksampah.ui.viewmodel.KertasViewModel
+import com.example.banksampah.ui.viewmodel.TabViewModel
 
 class RecyclerViewAdapter(
-    private val recyclerViewModel: KertasViewModel? = null
+    private val recyclerViewModel: TabViewModel? = null
 ) : RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder>() {
 
     val diff = AsyncListDiffer(this, object : DiffUtil.ItemCallback<SampahKategoryItem>() {

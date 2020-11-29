@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
         <variable
             name="viewModel"
-            type="com.example.banksampah.ui.viewmodel.KatalogViewModel" />
+            type="com.example.banksampah.ui.viewmodel.SampahViewModel" />
 
     </data>
 
@@ -33,15 +33,16 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
+                android:id="@+id/tv_sampah_judul"
                 style="@style/FontBold"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:text="Katalog"
                 android:textSize="20sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toEndOf="@id/panahkiri_katalog"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Katalog" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

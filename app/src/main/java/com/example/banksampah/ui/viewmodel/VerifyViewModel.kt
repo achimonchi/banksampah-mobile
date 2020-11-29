@@ -24,7 +24,7 @@ class VerifyViewModel : BaseViewModel() {
     fun verify() {
         loadingEnabled.value = true
         viewModelScope.launch {
-            when (val response = repository.updateNasabah(
+            when (repository.updateNasabah(
                 Session.token ?: "",
                 NasabahUpdate(
                     nName = fullNameText.value,

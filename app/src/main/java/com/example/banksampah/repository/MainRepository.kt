@@ -3,9 +3,11 @@ package com.example.banksampah.repository
 import com.example.banksampah.api.RetrofitInstance
 import com.example.banksampah.model.*
 import com.example.banksampah.utill.Resource
-import okhttp3.MediaType
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.MultipartBody
+import okhttp3.RequestBody.Companion.asRequestBody
 import okhttp3.RequestBody.Companion.toRequestBody
+import java.io.File
 
 class MainRepository {
 
@@ -85,15 +87,19 @@ class MainRepository {
     }
 
     suspend fun requestSampah(
+        token: String,
         idGarbage: String,
         rWeight: String,
-        rImage: String,
+        rImage: File,
         rNotes: String
     ): Resource<RequestSampahResponse> {
+        val requestFile = rImage.asRequestBody("multipart/form-data".toMediaTypeOrNull())
+
         val response = RetrofitInstance.api.requestSampah(
+            token,
             idGarbage.toRequestBody("text/plain".toMediaTypeOrNull()),
             rWeight.toRequestBody("text/plain".toMediaTypeOrNull()),
-            rImage.toRequestBody("image/*".toMediaTypeOrNull()),
+            MultipartBody.Part.createFormData("r_image", rImage.name, requestFile),
             rNotes.toRequestBody("text/plain".toMediaTypeOrNull())
         )
 

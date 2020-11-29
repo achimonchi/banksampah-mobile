@@ -4,9 +4,9 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import com.example.banksampah.model.SampahItem
-import com.example.banksampah.ui.fragment.tab.TabKatalogFragment
+import com.example.banksampah.ui.fragment.tab.TabJualSampahFragment
 
-class KatalogPagerAdapter(
+class JualSampahPagerAdapter(
     fragmentManager: FragmentManager
 ) : FragmentPagerAdapter(
     fragmentManager,
@@ -23,10 +23,10 @@ class KatalogPagerAdapter(
 
     override fun getItem(position: Int): Fragment {
         return when (listTab?.get(position)?.kName) {
-            "Sampah Kertas" -> TabKatalogFragment(TabKatalogFragment.TYPE_KERTAS)
-            "Sampah Plastik" -> TabKatalogFragment(TabKatalogFragment.TYPE_PLASTIK)
-            "Sampah Logam" -> TabKatalogFragment(TabKatalogFragment.TYPE_LOGAM)
-            else -> TabKatalogFragment(TabKatalogFragment.TYPE_LAIN)
+            "Sampah Kertas" -> TabJualSampahFragment(TabJualSampahFragment.TYPE_KERTAS)
+            "Sampah Plastik" -> TabJualSampahFragment(TabJualSampahFragment.TYPE_PLASTIK)
+            "Sampah Logam" -> TabJualSampahFragment(TabJualSampahFragment.TYPE_LOGAM)
+            else -> TabJualSampahFragment(TabJualSampahFragment.TYPE_LAIN)
         }
     }
 

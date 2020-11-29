@@ -7,17 +7,13 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.banksampah.R
 import com.example.banksampah.databinding.ActivitySampahBinding
-import com.example.banksampah.ui.adapter.KatalogPagerAdapter
+import com.example.banksampah.ui.adapter.JualSampahPagerAdapter
 import com.example.banksampah.ui.viewmodel.SampahViewModel
 
-class KatalogActivity : AppCompatActivity() {
-
-    companion object {
-        const val EXTRA_PAGE = "extra_page"
-    }
+class JualSampahActivity : AppCompatActivity() {
 
     private lateinit var sampahViewModel: SampahViewModel
-    private lateinit var adapter: KatalogPagerAdapter
+    private lateinit var adapter: JualSampahPagerAdapter
     private lateinit var dataBinding: ActivitySampahBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -27,15 +23,15 @@ class KatalogActivity : AppCompatActivity() {
         dataBinding = DataBindingUtil.setContentView(this, R.layout.activity_sampah)
 
         dataBinding.apply {
-            lifecycleOwner = this@KatalogActivity
+            lifecycleOwner = this@JualSampahActivity
             viewModel = sampahViewModel
-            tvSampahJudul.text = StringBuilder("Katalog Sampah")
+            tvSampahJudul.text = StringBuilder("Jual Sampah")
         }
 
-        adapter = KatalogPagerAdapter(supportFragmentManager)
+        adapter = JualSampahPagerAdapter(supportFragmentManager)
 
         sampahViewModel.apply {
-            action.observe(this@KatalogActivity, Observer { action ->
+            action.observe(this@JualSampahActivity, Observer { action ->
                 when (action) {
                     SampahViewModel.ACTION_KATALOG_NAVIGATEUP -> onClickNavigateUp()
                     SampahViewModel.ACTION_ITEM_UPDATE -> onItemUpdate()
@@ -46,12 +42,7 @@ class KatalogActivity : AppCompatActivity() {
 
         dataBinding.apply {
             tablayoutKatalog.setupWithViewPager(dataBinding.viewpagerKatalog)
-            viewpagerKatalog.adapter = this@KatalogActivity.adapter
-            viewpagerKatalog.apply {
-                postDelayed({
-                    setCurrentItem(intent.getIntExtra(EXTRA_PAGE, 0), false)
-                }, 100)
-            }
+            viewpagerKatalog.adapter = this@JualSampahActivity.adapter
         }
     }
 

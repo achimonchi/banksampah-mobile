@@ -1,4 +1,4 @@
-package com.example.banksampah.model
+package com.example.banksampah.model.entity
 
 import android.os.Parcel
 import android.os.Parcelable

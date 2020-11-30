@@ -1,9 +1,9 @@
-package com.example.banksampah.model
+package com.example.banksampah.model.entity
 
 
 import com.google.gson.annotations.SerializedName
 
-data class Nasabah(
+data class NasabahItem(
     @SerializedName("fk_auth")
     var fkAuth: String? = "",
     @SerializedName("_id")

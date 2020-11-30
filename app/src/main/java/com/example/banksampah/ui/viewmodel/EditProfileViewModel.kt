@@ -2,7 +2,7 @@ package com.example.banksampah.ui.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.example.banksampah.model.NasabahUpdate
+import com.example.banksampah.model.entity.NasabahItem
 import com.example.banksampah.utill.Resource
 import com.example.banksampah.utill.Session
 import kotlinx.coroutines.launch
@@ -60,7 +60,7 @@ class EditProfileViewModel : BaseViewModel() {
         viewModelScope.launch {
             when (repository.updateNasabah(
                 Session.token ?: "",
-                NasabahUpdate(
+                NasabahItem(
                     nName = fullNameText.value,
                     nContact = phoneNumberText.value,
                     nAddress = addressText.value,

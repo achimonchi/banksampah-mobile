@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.banksampah.databinding.ItemGridKatalogBinding
-import com.example.banksampah.model.SampahKategoryItem
+import com.example.banksampah.model.entity.SampahKategoryItem
 import com.example.banksampah.ui.viewmodel.TabViewModel
 
 class RecyclerViewAdapter(

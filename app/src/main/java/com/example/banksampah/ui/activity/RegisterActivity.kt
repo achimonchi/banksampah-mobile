@@ -1,9 +1,9 @@
 package com.example.banksampah.ui.activity
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -42,11 +42,12 @@ class RegisterActivity : AppCompatActivity() {
 
     private fun registerSuccess() {
         Toast.makeText(this, "Pendaftaran Berhasil!", Toast.LENGTH_SHORT).show()
+        finish()
         startActivity(Intent(this, LoginActivity::class.java))
     }
 
     private fun registerFailed() {
-        Toast.makeText(this, "Pendaftaran Gagal!", Toast.LENGTH_SHORT).show()
+        Toast.makeText(this, registerViewModel.message, Toast.LENGTH_SHORT).show()
     }
 
     private fun registerPassNotMatch() {

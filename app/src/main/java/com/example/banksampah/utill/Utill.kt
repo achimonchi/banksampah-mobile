@@ -9,7 +9,7 @@ import java.text.DecimalFormatSymbols
 
 object Utill {
 
-    fun getMimeTypeFromUri(uri: Uri?, context: Context): String {
+    private fun getMimeTypeFromUri(uri: Uri?, context: Context): String {
         return if (uri == null) {
             ""
         } else {
@@ -36,8 +36,8 @@ object Utill {
         val kurs = (DecimalFormat.getCurrencyInstance() as DecimalFormat)
         val format = DecimalFormatSymbols().apply {
             currencySymbol = "Rp. "
-            groupingSeparator = ','
-            monetaryDecimalSeparator = ','
+            groupingSeparator = '.'
+            monetaryDecimalSeparator = '.'
         }
 
         kurs.decimalFormatSymbols = format

@@ -3,7 +3,7 @@ package com.example.banksampah.ui.viewmodel
 import android.net.Uri
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.example.banksampah.model.SampahKategoryItem
+import com.example.banksampah.model.entity.SampahKategoryItem
 import com.example.banksampah.utill.Resource
 import com.example.banksampah.utill.Session
 import com.example.banksampah.utill.Utill

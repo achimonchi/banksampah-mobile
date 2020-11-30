@@ -1,9 +1,9 @@
-package com.example.banksampah.model
+package com.example.banksampah.model.response
 
 
 import com.google.gson.annotations.SerializedName
 
-data class RequestSampahResponse(
+data class NasabahResponse(
     @SerializedName("data")
     var `data`: Data? = Data(),
     @SerializedName("status")

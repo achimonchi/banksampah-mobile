@@ -1,7 +1,7 @@
 package com.example.banksampah.ui.viewmodel
 
 import androidx.lifecycle.viewModelScope
-import com.example.banksampah.model.SampahItem
+import com.example.banksampah.model.entity.SampahItem
 import com.example.banksampah.utill.Resource
 import com.example.banksampah.utill.Session
 import kotlinx.coroutines.launch

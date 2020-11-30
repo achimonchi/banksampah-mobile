@@ -1,7 +1,9 @@
 package com.example.banksampah.repository
 
 import com.example.banksampah.api.RetrofitInstance
-import com.example.banksampah.model.*
+import com.example.banksampah.model.entity.AuthItem
+import com.example.banksampah.model.entity.NasabahItem
+import com.example.banksampah.model.response.*
 import com.example.banksampah.utill.Resource
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
@@ -11,8 +13,8 @@ import java.io.File
 
 class MainRepository {
 
-    suspend fun authLogin(auth: Auth): Resource<AuthResponse> {
-        val response = RetrofitInstance.api.authLogin(auth)
+    suspend fun authLogin(authItem: AuthItem.Data): Resource<AuthResponse> {
+        val response = RetrofitInstance.auth.authLogin(authItem)
 
         if (response.isSuccessful) {
             response.body()?.let {
@@ -23,8 +25,8 @@ class MainRepository {
         return Resource.Error(response.message())
     }
 
-    suspend fun authSignUp(auth: Auth): Resource<AuthResponse> {
-        val response = RetrofitInstance.api.authSignup(auth)
+    suspend fun authSignUp(authItem: AuthItem.Data): Resource<AuthResponse> {
+        val response = RetrofitInstance.auth.authSignup(authItem)
 
         if (response.isSuccessful) {
             response.body()?.let {
@@ -35,20 +37,20 @@ class MainRepository {
         return Resource.Error(response.message())
     }
 
-    suspend fun getNasabah(token: String): Resource<Nasabah> {
-        val response = RetrofitInstance.api.getNasabah(token)
+    suspend fun getNasabah(token: String): Resource<NasabahItem> {
+        val response = RetrofitInstance.nasabah.getNasabah(token)
 
         if (response.isSuccessful) {
             response.body()?.let {
-                return Resource.Success(it)
+                return Resource.Success(it, response.message())
             }
         }
 
         return Resource.Error(response.message())
     }
 
-    suspend fun updateNasabah(token: String, nasabah: NasabahUpdate): Resource<NasabahResponse> {
-        val response = RetrofitInstance.api.updateNasabah(token, nasabah)
+    suspend fun updateNasabah(token: String, nasabahItem: NasabahItem): Resource<NasabahResponse> {
+        val response = RetrofitInstance.nasabah.updateNasabah(token, nasabahItem)
 
         if (response.isSuccessful) {
             response.body()?.let {
@@ -60,7 +62,7 @@ class MainRepository {
     }
 
     suspend fun getSampahCategory(token: String): Resource<SampahResponse> {
-        val response = RetrofitInstance.api.getSampahCategory(token)
+        val response = RetrofitInstance.sampah.getSampahCategory(token)
 
         if (response.isSuccessful) {
             response.body()?.let {
@@ -75,7 +77,7 @@ class MainRepository {
         token: String,
         id: String
     ): Resource<SampahKategoryResponse> {
-        val response = RetrofitInstance.api.getSampahByCategory(token, id)
+        val response = RetrofitInstance.sampah.getSampahByCategory(token, id)
 
         if (response.isSuccessful) {
             response.body()?.let {
@@ -95,7 +97,7 @@ class MainRepository {
     ): Resource<RequestSampahResponse> {
         val requestFile = rImage.asRequestBody("multipart/form-data".toMediaTypeOrNull())
 
-        val response = RetrofitInstance.api.requestSampah(
+        val response = RetrofitInstance.requestSampah.postRequestSampah(
             token,
             idGarbage.toRequestBody("text/plain".toMediaTypeOrNull()),
             rWeight.toRequestBody("text/plain".toMediaTypeOrNull()),

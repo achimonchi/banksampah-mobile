@@ -16,7 +16,7 @@
 
         <variable
             name="itemSampah"
-            type="com.example.banksampah.model.SampahKategoryItem" />
+            type="com.example.banksampah.model.entity.SampahKategoryItem" />
 
     </data>
 

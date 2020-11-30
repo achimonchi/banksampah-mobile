@@ -7,7 +7,8 @@ import androidx.preference.PreferenceManager
 class Session {
 
     companion object {
-        const val TOKEN_KEY = "token"
+        private const val TOKEN_KEY = "token"
+
         var preference: SharedPreferences? = null
 
         fun init(context: Context) {
@@ -21,6 +22,5 @@ class Session {
                 preference?.edit()?.putString(TOKEN_KEY, value)?.apply()
             }
     }
-
 
 }

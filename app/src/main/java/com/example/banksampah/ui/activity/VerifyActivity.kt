@@ -2,7 +2,6 @@ package com.example.banksampah.ui.activity
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
@@ -10,17 +9,11 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.banksampah.R
 import com.example.banksampah.databinding.ActivityVerifyBinding
-import com.example.banksampah.model.NasabahUpdate
-import com.example.banksampah.ui.viewmodel.MainViewModel
 import com.example.banksampah.ui.viewmodel.VerifyViewModel
-import com.example.banksampah.utill.Resource
-import com.example.banksampah.utill.Session
 import kotlinx.android.synthetic.main.activity_verify.*
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-import java.net.HttpURLConnection.HTTP_OK
-import java.net.HttpURLConnection.HTTP_UNAUTHORIZED
 
 class VerifyActivity : AppCompatActivity() {
 

@@ -9,7 +9,7 @@
 
         <variable
             name="item"
-            type="com.example.banksampah.model.SampahKategoryItem" />
+            type="com.example.banksampah.model.entity.SampahKategoryItem" />
 
         <variable
             name="viewModel"

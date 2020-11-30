@@ -2,7 +2,7 @@ package com.example.banksampah.ui.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.example.banksampah.model.SampahKategoryItem
+import com.example.banksampah.model.entity.SampahKategoryItem
 import com.example.banksampah.ui.fragment.tab.TabJualSampahFragment.Companion.TYPE_KERTAS
 import com.example.banksampah.ui.fragment.tab.TabJualSampahFragment.Companion.TYPE_LAIN
 import com.example.banksampah.ui.fragment.tab.TabJualSampahFragment.Companion.TYPE_LOGAM

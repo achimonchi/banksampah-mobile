@@ -1,5 +1,6 @@
-package com.example.banksampah.model
+package com.example.banksampah.model.response
 
+import com.example.banksampah.model.entity.SampahItem
 import com.google.gson.annotations.SerializedName
 
 class SampahResponse(

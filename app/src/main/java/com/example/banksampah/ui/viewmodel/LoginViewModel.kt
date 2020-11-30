@@ -2,8 +2,7 @@ package com.example.banksampah.ui.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.example.banksampah.api.RetrofitInstance.api
-import com.example.banksampah.model.Auth
+import com.example.banksampah.model.entity.AuthItem
 import com.example.banksampah.utill.Resource
 import com.example.banksampah.utill.Session
 import kotlinx.coroutines.launch
@@ -26,7 +25,7 @@ class LoginViewModel : BaseViewModel() {
         loadingEnabled.value = true
         viewModelScope.launch {
             when (val result =
-                repository.authLogin(Auth(username.value ?: "", password.value ?: ""))) {
+                repository.authLogin(AuthItem.Data(username.value ?: "", password.value ?: ""))) {
                 is Resource.Success -> {
                     when (result.data?.status) {
                         200 -> {
@@ -49,14 +48,19 @@ class LoginViewModel : BaseViewModel() {
 
     private fun getProfile() {
         viewModelScope.launch {
-            val result = api.getNasabah(Session.token ?: "")
-            if (result.isSuccessful) {
-                if (result.body()?.isExist == "1") {
-                    loadingEnabled.postValue(false)
-                    action.postValue(ACTION_LOGIN_VERIFIED)
-                } else {
-                    loadingEnabled.postValue(false)
-                    action.postValue(ACTION_LOGIN_UNVERIFIED)
+
+            when (val result = repository.getNasabah(Session.token ?: "")) {
+                is Resource.Success -> {
+                    if (result.data?.isExist == "1") {
+                        loadingEnabled.postValue(false)
+                        action.postValue(ACTION_LOGIN_VERIFIED)
+                    } else {
+                        loadingEnabled.postValue(false)
+                        action.postValue(ACTION_LOGIN_UNVERIFIED)
+                    }
+                }
+                is Resource.Error -> {
+                    action.postValue(ACTION_CONNECTION_TIMEOUT)
                 }
             }
         }

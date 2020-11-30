@@ -14,7 +14,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.banksampah.R
 import com.example.banksampah.databinding.ActivityRequestBinding
-import com.example.banksampah.model.SampahKategoryItem
+import com.example.banksampah.model.entity.SampahKategoryItem
 import com.example.banksampah.ui.viewmodel.RequestViewModel
 import com.example.banksampah.utill.Utill
 import com.theartofdev.edmodo.cropper.CropImage

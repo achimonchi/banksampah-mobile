@@ -7,19 +7,21 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import com.example.banksampah.R
 import com.example.banksampah.databinding.FragmentHomeBinding
 import com.example.banksampah.ui.activity.JualSampahActivity
 import com.example.banksampah.ui.activity.KatalogActivity
 import com.example.banksampah.ui.viewmodel.HomeViewModel
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_home.*
 
+@AndroidEntryPoint
 class HomeFragment : Fragment() {
 
-    lateinit var homeViewModel: HomeViewModel
-    lateinit var dataBinding: FragmentHomeBinding
+    private val homeViewModel: HomeViewModel by viewModels()
+    private lateinit var dataBinding: FragmentHomeBinding
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -27,7 +29,6 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         dataBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_home, container, false)
-        homeViewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
         return dataBinding.root
     }
 

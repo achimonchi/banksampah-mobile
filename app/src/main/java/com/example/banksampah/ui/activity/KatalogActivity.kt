@@ -1,28 +1,29 @@
 package com.example.banksampah.ui.activity
 
 import android.os.Bundle
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import com.example.banksampah.R
 import com.example.banksampah.databinding.ActivitySampahBinding
 import com.example.banksampah.ui.adapter.KatalogPagerAdapter
 import com.example.banksampah.ui.viewmodel.SampahViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class KatalogActivity : AppCompatActivity() {
 
     companion object {
         const val EXTRA_PAGE = "extra_page"
     }
 
-    private lateinit var sampahViewModel: SampahViewModel
+    private val sampahViewModel: SampahViewModel by viewModels()
     private lateinit var adapter: KatalogPagerAdapter
     private lateinit var dataBinding: ActivitySampahBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        sampahViewModel = ViewModelProvider(this).get(SampahViewModel::class.java)
 
         dataBinding = DataBindingUtil.setContentView(this, R.layout.activity_sampah)
 

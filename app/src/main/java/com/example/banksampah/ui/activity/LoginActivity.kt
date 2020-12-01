@@ -3,27 +3,24 @@ package com.example.banksampah.ui.activity
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import com.example.banksampah.R
 import com.example.banksampah.databinding.ActivityLoginBinding
 import com.example.banksampah.ui.viewmodel.LoginViewModel
-import com.example.banksampah.utill.Session
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class LoginActivity : AppCompatActivity() {
 
-    private lateinit var loginViewModel: LoginViewModel
+    private val loginViewModel: LoginViewModel by viewModels()
     private lateinit var dataBinding: ActivityLoginBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         dataBinding = DataBindingUtil.setContentView(this, R.layout.activity_login)
-
-        loginViewModel = ViewModelProvider(this).get(LoginViewModel::class.java)
-
-        Session.init(this)
 
         dataBinding.apply {
             lifecycleOwner = this@LoginActivity

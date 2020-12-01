@@ -1,8 +1,10 @@
 package com.example.banksampah.ui.viewmodel
 
+import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.banksampah.model.entity.SampahKategoryItem
+import com.example.banksampah.repository.MainRepository
 import com.example.banksampah.ui.fragment.tab.TabJualSampahFragment.Companion.TYPE_KERTAS
 import com.example.banksampah.ui.fragment.tab.TabJualSampahFragment.Companion.TYPE_LAIN
 import com.example.banksampah.ui.fragment.tab.TabJualSampahFragment.Companion.TYPE_LOGAM
@@ -11,7 +13,9 @@ import com.example.banksampah.utill.Resource
 import com.example.banksampah.utill.Session
 import kotlinx.coroutines.launch
 
-class TabViewModel : BaseViewModel() {
+class TabViewModel @ViewModelInject constructor(
+    private val repository: MainRepository
+) : BaseViewModel() {
 
     companion object {
         const val ACTION_KERTAS_TIMEOUT = "action_kertas_timeout"

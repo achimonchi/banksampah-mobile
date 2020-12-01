@@ -1,15 +1,19 @@
 package com.example.banksampah.ui.viewmodel
 
 import android.net.Uri
+import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.banksampah.model.entity.SampahKategoryItem
+import com.example.banksampah.repository.MainRepository
 import com.example.banksampah.utill.Resource
 import com.example.banksampah.utill.Session
 import com.example.banksampah.utill.Utill
 import kotlinx.coroutines.launch
 
-class RequestViewModel : BaseViewModel() {
+class RequestViewModel @ViewModelInject constructor(
+    private val repository: MainRepository
+) : BaseViewModel() {
 
     companion object {
         const val ACTION_REQUEST_SUCCESS = "action_request_success"

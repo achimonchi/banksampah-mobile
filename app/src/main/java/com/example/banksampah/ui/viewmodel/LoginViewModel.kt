@@ -1,13 +1,17 @@
 package com.example.banksampah.ui.viewmodel
 
+import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.banksampah.model.entity.AuthItem
+import com.example.banksampah.repository.MainRepository
 import com.example.banksampah.utill.Resource
 import com.example.banksampah.utill.Session
 import kotlinx.coroutines.launch
 
-class LoginViewModel : BaseViewModel() {
+class LoginViewModel @ViewModelInject constructor(
+    private val repository: MainRepository
+) : BaseViewModel() {
 
     companion object {
         const val ACTION_LOGIN_VERIFIED = "action_login_verified"

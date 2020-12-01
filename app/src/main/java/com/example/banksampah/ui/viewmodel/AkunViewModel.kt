@@ -1,13 +1,17 @@
 package com.example.banksampah.ui.viewmodel
 
+import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
+import com.example.banksampah.repository.MainRepository
 import com.example.banksampah.utill.Resource
 import com.example.banksampah.utill.Session
 import com.example.banksampah.utill.Utill
 import kotlinx.coroutines.launch
 
-class AkunViewModel : BaseViewModel() {
+class AkunViewModel @ViewModelInject constructor(
+    private val repository: MainRepository
+) : BaseViewModel() {
 
     companion object {
         const val ACTION_AKUN_LOGOUT = "action_akun_logout"

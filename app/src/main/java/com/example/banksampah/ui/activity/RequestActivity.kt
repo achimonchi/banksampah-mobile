@@ -6,20 +6,22 @@ import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
 import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import com.example.banksampah.R
 import com.example.banksampah.databinding.ActivityRequestBinding
 import com.example.banksampah.model.entity.SampahKategoryItem
 import com.example.banksampah.ui.viewmodel.RequestViewModel
 import com.example.banksampah.utill.Utill
 import com.theartofdev.edmodo.cropper.CropImage
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_request.*
 
+@AndroidEntryPoint
 class RequestActivity : AppCompatActivity() {
 
     companion object {
@@ -29,13 +31,12 @@ class RequestActivity : AppCompatActivity() {
 
     var uri: Uri? = null
 
-    lateinit var requestViewModel: RequestViewModel
-    lateinit var dataBinding: ActivityRequestBinding
+    private val requestViewModel: RequestViewModel by viewModels()
+    private lateinit var dataBinding: ActivityRequestBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         dataBinding = DataBindingUtil.setContentView(this, R.layout.activity_request)
-        requestViewModel = ViewModelProvider(this).get(RequestViewModel::class.java)
 
         val item: SampahKategoryItem? = intent.getParcelableExtra(EXTRA_ITEM)
 

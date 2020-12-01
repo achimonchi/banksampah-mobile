@@ -1,13 +1,17 @@
 package com.example.banksampah.ui.viewmodel
 
+import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.banksampah.model.entity.NasabahItem
+import com.example.banksampah.repository.MainRepository
 import com.example.banksampah.utill.Resource
 import com.example.banksampah.utill.Session
 import kotlinx.coroutines.launch
 
-class VerifyViewModel : BaseViewModel() {
+class VerifyViewModel @ViewModelInject constructor(
+    private val repository: MainRepository
+) : BaseViewModel() {
 
     companion object {
         const val ACTION_VERIFY_SUCCESS = "action_verify_success"

@@ -6,19 +6,21 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.banksampah.R
 import com.example.banksampah.ui.adapter.RecyclerViewAdapter
 import com.example.banksampah.ui.viewmodel.TabViewModel
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_kertas.*
 
+@AndroidEntryPoint
 class TabKatalogFragment(
     val type: String
 ) : Fragment() {
 
-    private lateinit var tabViewModel: TabViewModel
+    private val tabViewModel: TabViewModel by viewModels()
     private lateinit var adapter: RecyclerViewAdapter
 
     companion object {
@@ -33,7 +35,6 @@ class TabKatalogFragment(
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        tabViewModel = ViewModelProvider(this).get(TabViewModel::class.java)
         adapter = RecyclerViewAdapter(tabViewModel)
         return inflater.inflate(R.layout.fragment_kertas, container, false)
     }

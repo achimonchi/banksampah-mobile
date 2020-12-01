@@ -1,21 +1,17 @@
-package com.example.banksampah.api.service
+package com.example.banksampah.api.helper
 
 import com.example.banksampah.model.entity.AuthItem
 import com.example.banksampah.model.response.AuthResponse
 import retrofit2.Response
-import retrofit2.http.Body
-import retrofit2.http.POST
 
-interface AuthService {
+interface AuthHelper {
 
-    @POST("auth/login")
     suspend fun authLogin(
-        @Body authItem: AuthItem.Data
+        authItem: AuthItem.Data
     ): Response<AuthResponse>
 
-    @POST("auth/signup")
     suspend fun authSignup(
-        @Body authItem: AuthItem.Data
+        authItem: AuthItem.Data
     ): Response<AuthResponse>
 
 }

@@ -1,12 +1,16 @@
 package com.example.banksampah.ui.viewmodel
 
+import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.banksampah.model.entity.AuthItem
+import com.example.banksampah.repository.MainRepository
 import com.example.banksampah.utill.Resource
 import kotlinx.coroutines.launch
 
-class RegisterViewModel : BaseViewModel() {
+class RegisterViewModel @ViewModelInject constructor(
+    private val repository: MainRepository
+) : BaseViewModel() {
 
     companion object {
         const val ACTION_REGISTER_SUCCESSFULLY = "action_register_successfully"

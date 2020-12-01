@@ -2,24 +2,24 @@ package com.example.banksampah.ui.activity
 
 import android.os.Bundle
 import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import com.example.banksampah.R
 import com.example.banksampah.databinding.ActivityEditProfileBinding
 import com.example.banksampah.ui.viewmodel.EditProfileViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class EditProfileActivity : AppCompatActivity() {
 
-    private lateinit var editProfileViewModel: EditProfileViewModel
+    private val editProfileViewModel: EditProfileViewModel by viewModels()
     private lateinit var dataBinding: ActivityEditProfileBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         dataBinding = DataBindingUtil.setContentView(this, R.layout.activity_edit_profile)
-
-        editProfileViewModel = ViewModelProvider(this).get(EditProfileViewModel::class.java)
 
         dataBinding.apply {
             lifecycleOwner = this@EditProfileActivity

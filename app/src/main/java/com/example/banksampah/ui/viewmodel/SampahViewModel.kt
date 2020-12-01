@@ -1,12 +1,16 @@
 package com.example.banksampah.ui.viewmodel
 
+import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.viewModelScope
 import com.example.banksampah.model.entity.SampahItem
+import com.example.banksampah.repository.MainRepository
 import com.example.banksampah.utill.Resource
 import com.example.banksampah.utill.Session
 import kotlinx.coroutines.launch
 
-class SampahViewModel : BaseViewModel() {
+class SampahViewModel @ViewModelInject constructor(
+    private val repository: MainRepository
+) : BaseViewModel() {
 
     companion object {
         const val ACTION_KATALOG_NAVIGATEUP = "action_katalog_navigateup"

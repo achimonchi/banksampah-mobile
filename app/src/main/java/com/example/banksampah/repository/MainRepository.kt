@@ -1,9 +1,9 @@
 package com.example.banksampah.repository
 
-import com.example.banksampah.api.helper.AuthHelper
-import com.example.banksampah.api.helper.NasabahHelper
-import com.example.banksampah.api.helper.RequestSampahHelper
-import com.example.banksampah.api.helper.SampahHelper
+import com.example.banksampah.api.AuthService
+import com.example.banksampah.api.NasabahService
+import com.example.banksampah.api.RequestSampahService
+import com.example.banksampah.api.SampahService
 import com.example.banksampah.model.entity.AuthItem
 import com.example.banksampah.model.entity.NasabahItem
 import com.example.banksampah.model.response.*
@@ -16,14 +16,14 @@ import java.io.File
 import javax.inject.Inject
 
 class MainRepository @Inject constructor(
-    private val authHelper: AuthHelper,
-    private val nasabahHelper: NasabahHelper,
-    private val sampahHelper: SampahHelper,
-    private val requestSampahHelper: RequestSampahHelper
+    private val authService: AuthService,
+    private val nasabahService: NasabahService,
+    private val sampahService: SampahService,
+    private val requestSampahService: RequestSampahService
 ) {
 
     suspend fun authLogin(authItem: AuthItem.Data): Resource<AuthResponse> {
-        authHelper.authLogin(authItem).let { response ->
+        authService.authLogin(authItem).let { response ->
             if (response.isSuccessful) {
                 response.body()?.let {
                     return Resource.Success(it)
@@ -34,7 +34,7 @@ class MainRepository @Inject constructor(
     }
 
     suspend fun authSignUp(authItem: AuthItem.Data): Resource<AuthResponse> {
-        authHelper.authSignup(authItem).let { response ->
+        authService.authSignup(authItem).let { response ->
             if (response.isSuccessful) {
                 response.body()?.let {
                     return Resource.Success(it)
@@ -45,7 +45,7 @@ class MainRepository @Inject constructor(
     }
 
     suspend fun getNasabah(token: String): Resource<NasabahItem> {
-        nasabahHelper.getNasabah(token).let { response ->
+        nasabahService.getNasabah(token).let { response ->
             if (response.isSuccessful) {
                 response.body()?.let {
                     return Resource.Success(it)
@@ -56,7 +56,7 @@ class MainRepository @Inject constructor(
     }
 
     suspend fun updateNasabah(token: String, nasabahItem: NasabahItem): Resource<NasabahResponse> {
-        nasabahHelper.updateNasabah(token, nasabahItem).let { response ->
+        nasabahService.updateNasabah(token, nasabahItem).let { response ->
             if (response.isSuccessful) {
                 response.body()?.let {
                     return Resource.Success(it)
@@ -67,7 +67,7 @@ class MainRepository @Inject constructor(
     }
 
     suspend fun getSampahCategory(token: String): Resource<SampahResponse> {
-        sampahHelper.getSampahCategory(token).let { response ->
+        sampahService.getSampahCategory(token).let { response ->
             if (response.isSuccessful) {
                 response.body()?.let {
                     return Resource.Success(it)
@@ -81,7 +81,7 @@ class MainRepository @Inject constructor(
         token: String,
         id: String
     ): Resource<SampahKategoryResponse> {
-        sampahHelper.getSampahByCategory(token, id).let { response ->
+        sampahService.getSampahByCategory(token, id).let { response ->
             if (response.isSuccessful) {
                 response.body()?.let {
                     return Resource.Success(it)
@@ -100,7 +100,7 @@ class MainRepository @Inject constructor(
     ): Resource<RequestSampahResponse> {
         val requestFile = rImage.asRequestBody("multipart/form-data".toMediaTypeOrNull())
 
-        requestSampahHelper.postRequestSampah(
+        requestSampahService.postRequestSampah(
             token,
             idGarbage.toRequestBody("text/plain".toMediaTypeOrNull()),
             rWeight.toRequestBody("text/plain".toMediaTypeOrNull()),

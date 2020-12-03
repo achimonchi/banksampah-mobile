@@ -1,15 +1,10 @@
 package com.example.banksampah.di
 
 import com.example.banksampah.BuildConfig
-import com.example.banksampah.api.ApiService
-import com.example.banksampah.api.helper.AuthHelper
-import com.example.banksampah.api.helper.NasabahHelper
-import com.example.banksampah.api.helper.RequestSampahHelper
-import com.example.banksampah.api.helper.SampahHelper
-import com.example.banksampah.api.implementation.AuthImpl
-import com.example.banksampah.api.implementation.NasabahImpl
-import com.example.banksampah.api.implementation.RequestSampahImpl
-import com.example.banksampah.api.implementation.SampahImpl
+import com.example.banksampah.api.AuthService
+import com.example.banksampah.api.NasabahService
+import com.example.banksampah.api.RequestSampahService
+import com.example.banksampah.api.SampahService
 import com.example.banksampah.utill.Constant
 import com.google.gson.GsonBuilder
 import dagger.Module
@@ -60,23 +55,19 @@ object NetworkModule {
 
     @Singleton
     @Provides
-    fun provideApiService(retrofit: Retrofit) = retrofit.create(ApiService::class.java)
+    fun provideAuthService(retrofit: Retrofit) = retrofit.create(AuthService::class.java)
 
     @Singleton
     @Provides
-    fun provideAuthHelper(authHelper: AuthImpl): AuthHelper = authHelper
+    fun provideNasabahService(retrofit: Retrofit) = retrofit.create(NasabahService::class.java)
 
     @Singleton
     @Provides
-    fun provideNasabahHelper(nasabahHelper: NasabahImpl): NasabahHelper = nasabahHelper
+    fun provideRequestSampahService(retrofit: Retrofit) =
+        retrofit.create(RequestSampahService::class.java)
 
     @Singleton
     @Provides
-    fun provideSampahHelper(sampahHelper: SampahImpl): SampahHelper = sampahHelper
-
-    @Singleton
-    @Provides
-    fun provideRequestSampahHelper(requestSampahHelper: RequestSampahImpl): RequestSampahHelper =
-        requestSampahHelper
+    fun provideSampahService(retrofit: Retrofit) = retrofit.create(SampahService::class.java)
 
 }

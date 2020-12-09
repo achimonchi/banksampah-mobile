@@ -1,32 +1,26 @@
 package com.example.banksampah.ui.activity
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
-import androidx.navigation.findNavController
+import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.banksampah.R
-import com.example.banksampah.utill.Session
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
-class MainActivity : AppCompatActivity() {
+@AndroidEntryPoint
+class MainActivity : AppCompatActivity(R.layout.activity_main) {
 
-    lateinit var session: Session
     var doubleBackPressed = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-
-        session = Session(this)
 
         bottom_navigation.setupWithNavController(menuNavHostFragment.findNavController())
-
-        Toast.makeText(this, session.token, Toast.LENGTH_SHORT).show()
     }
 
     override fun onBackPressed() {
@@ -47,6 +41,7 @@ class MainActivity : AppCompatActivity() {
 
             doubleBackPressed = true
             toast.show()
+
             GlobalScope.launch {
                 delay(2000L)
                 doubleBackPressed = false

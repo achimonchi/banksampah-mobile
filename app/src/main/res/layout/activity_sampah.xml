@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.example.banksampah.ui.viewmodel.SampahViewModel" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/actionbar_katalog"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:padding="16dp"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/panahkiri_katalog"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/deskripsi"
+                android:onClick="@{() -> viewModel.navigateUp()}"
+                android:src="@drawable/ic_arrow_back"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_sampah_judul"
+                style="@style/FontBold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@id/panahkiri_katalog"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Katalog" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tablayout_katalog"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/actionbar_katalog"
+            app:tabMode="scrollable"
+            app:tabSelectedTextColor="@color/colorPrimary"
+            app:tabTextColor="@android:color/darker_gray" />
+
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/viewpager_katalog"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tablayout_katalog" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

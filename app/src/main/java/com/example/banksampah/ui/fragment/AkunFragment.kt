@@ -2,36 +2,74 @@ package com.example.banksampah.ui.fragment
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import com.example.banksampah.R
+import com.example.banksampah.databinding.FragmentAkunBinding
+import com.example.banksampah.ui.activity.EditProfileActivity
 import com.example.banksampah.ui.activity.LoginActivity
-import com.example.banksampah.utill.Session
-import kotlinx.android.synthetic.main.fragment_akun.*
+import com.example.banksampah.ui.viewmodel.AkunViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
-class AkunFragment : Fragment(R.layout.fragment_akun), View.OnClickListener {
+@AndroidEntryPoint
+class AkunFragment : Fragment() {
 
-    lateinit var session: Session
+    private val akunViewModel: AkunViewModel by viewModels()
+    private lateinit var dataBinding: FragmentAkunBinding
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        dataBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_akun, container, false)
+        return dataBinding.root
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        session = Session(requireContext())
-
-        btn_logout_akun.setOnClickListener(this)
-    }
-
-    override fun onClick(v: View?) {
-        when (v?.id) {
-            R.id.btn_logout_akun -> {
-                if (session.token != "") {
-                    session.token = ""
-
-                    val intent = Intent(requireContext(), LoginActivity::class.java)
-                    requireActivity().finish()
-                    startActivity(intent)
-                }
-            }
+        dataBinding.apply {
+            lifecycleOwner = this@AkunFragment
+            viewModel = akunViewModel
         }
+
+        akunViewModel.apply {
+            action.observe(viewLifecycleOwner, Observer { action ->
+                when (action) {
+                    AkunViewModel.ACTION_AKUN_LOGOUT -> akunLogout()
+                    AkunViewModel.ACTION_AKUN_BTN_UBAHCLICK -> btnUbahOnClick()
+                }
+            })
+        }
+        akunViewModel.setAkun()
     }
+
+    override fun onResume() {
+        super.onResume()
+        akunViewModel.setAkun()
+    }
+
+    private fun btnUbahOnClick() {
+        startActivity(
+            Intent(
+                requireContext(),
+                EditProfileActivity::class.java
+            )
+        )
+    }
+
+    private fun akunLogout() {
+        requireActivity().finish()
+        startActivity(
+            Intent(
+                requireContext(),
+                LoginActivity::class.java
+            )
+        )
+    }
+
 }

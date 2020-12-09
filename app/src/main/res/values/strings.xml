@@ -25,6 +25,10 @@
     <string name="data_kodepos">Kode Pos</string>
 
     <string name="deskripsi">Tombol Back Toolbar</string>
+    <string name="tombol_tambah">+</string>
+    <string name="tombol_kurang">-</string>
+    <string name="estimasi">0</string>
+    <string name="btn_tambah">Tambahkan</string>
 
     <string-array name="nama_tab">
         <item>Plastik Warna</item>

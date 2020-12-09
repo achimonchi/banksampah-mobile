@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+
+        <variable
+            name="position"
+            type="Integer" />
+
+        <variable
+            name="item"
+            type="com.example.banksampah.model.entity.SampahKategoryItem" />
+
+        <variable
+            name="viewModel"
+            type="com.example.banksampah.ui.viewmodel.TabViewModel" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:onClick="@{() -> viewModel.onClickItem(position)}"
+        tools:background="@color/colorBackground">
+
+        <ImageView
+            android:id="@+id/item_list_iv"
+            android:layout_width="96dp"
+            android:layout_height="96dp"
+            android:background="@drawable/bg_grid_list"
+            android:elevation="4dp"
+            android:src="@drawable/ic_arrow_back"
+            app:layout_constraintBottom_toTopOf="@id/item_list_tv_nama"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:loadImageFromUrl="@{item.JImage}" />
+
+        <TextView
+            android:id="@+id/item_list_tv_nama"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:textAlignment="center"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@id/item_list_tv_harga"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/item_list_iv"
+            app:text="@{item.JName}"
+            tools:text="Plastik Kresek"
+            tools:textColor="@android:color/black" />
+
+        <TextView
+            android:id="@+id/item_list_tv_harga"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{item.priceLabel}"
+            android:textAlignment="center"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/item_list_tv_nama"
+            tools:text="Rp.1,000 kg" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="uri"
+            type="android.net.Uri" />
+
+        <variable
+            name="viewModel"
+            type="com.example.banksampah.ui.viewmodel.RequestViewModel" />
+
+        <variable
+            name="itemSampah"
+            type="com.example.banksampah.model.entity.SampahKategoryItem" />
+
+    </data>
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="8dp">
+
+        <TextView
+            android:id="@+id/tvnama_sampah"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:text="@{itemSampah.JName}"
+            android:textColor="@android:color/black"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            tools:text="Plastik Kresek" />
+
+        <ImageView
+            android:id="@+id/iv_bukti_sampah"
+            android:layout_width="172dp"
+            android:layout_height="172dp"
+            android:layout_below="@id/tvnama_sampah"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="16dp"
+            android:src="@android:color/darker_gray"
+            android:visibility="@{viewModel.isUploaded ? View.VISIBLE : View.GONE}"
+            app:setImageWithURI="@{uri}" />
+
+        <Button
+            android:id="@+id/btn_upload"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/iv_bukti_sampah"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="16dp"
+            android:onClick="@{() -> viewModel.btnUploadOnClick()}"
+            android:text="Pilih Gambar"
+            android:visibility="@{viewModel.isUploaded ? View.GONE : View.VISIBLE}" />
+
+        <TextView
+            android:id="@+id/tvharga_sampah"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/btn_upload"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="16dp"
+            android:text="@{itemSampah.priceLabel}"
+            android:textSize="25sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@id/tvharga_sampah"
+            android:layout_toEndOf="@id/tvharga_sampah"
+            android:text="@{itemSampah.satuan}"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/tvjumlah_estimasi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tvharga_sampah"
+            android:layout_centerHorizontal="true"
+            android:layout_marginEnd="8dp"
+            android:text="Jumlah Estimasi Kg" />
+
+        <LinearLayout
+            android:id="@+id/ll_dialog"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tvjumlah_estimasi"
+            android:layout_centerHorizontal="true"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btn_kurang"
+                android:layout_width="40dp"
+                android:layout_height="48dp"
+                android:onClick="@{() -> viewModel.btnKurangOnClick()}"
+                android:text="@string/tombol_kurang"
+                android:textSize="18sp" />
+
+            <EditText
+                android:id="@+id/et_jumlah_estimasi"
+                android:layout_width="40dp"
+                android:layout_height="wrap_content"
+                android:hint="@string/estimasi"
+                android:inputType="number"
+                android:text="@={viewModel.jumlahEstimasi}"
+                android:textAlignment="center" />
+
+            <Button
+                android:id="@+id/btn_tambah"
+                android:layout_width="40dp"
+                android:layout_height="48dp"
+                android:onClick="@{() -> viewModel.btnTambahOnClick()}"
+                android:text="@string/tombol_tambah"
+                android:textSize="18sp" />
+
+        </LinearLayout>
+
+        <ProgressBar
+            android:id="@+id/pb_request"
+            style="@style/Progressbar"
+            android:layout_width="72dp"
+            android:layout_height="72dp"
+            android:layout_below="@id/ll_dialog"
+            android:layout_centerHorizontal="true"
+            android:visibility="@{viewModel.loadingEnabled ? View.VISIBLE : View.GONE}"
+            tools:visibility="gone" />
+
+        <Button
+            android:id="@+id/btn_tambahkan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/pb_request"
+            android:layout_marginTop="16dp"
+            android:onClick="@{() -> viewModel.btnTambahkanOnclick(itemSampah, uri)}"
+            android:text="@string/btn_tambah"
+            android:visibility="@{viewModel.loadingEnabled ? View.GONE : View.VISIBLE}" />
+
+    </RelativeLayout>
+
+</layout>

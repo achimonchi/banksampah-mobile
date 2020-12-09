@@ -1,36 +1,33 @@
 package com.example.banksampah.ui.adapter
 
-import android.content.Context
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
-import com.example.banksampah.R
-import com.example.banksampah.ui.fragment.tab.*
+import com.example.banksampah.model.entity.SampahItem
+import com.example.banksampah.ui.fragment.tab.TabKatalogFragment
 
 class KatalogPagerAdapter(
-    fragmentManager: FragmentManager,
-    context: Context
+    fragmentManager: FragmentManager
 ) : FragmentPagerAdapter(
     fragmentManager,
     BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT
 ) {
 
-    private var fragments = ArrayList<Fragment>()
-    private val judulTab = context.resources.getStringArray(R.array.nama_tab)
+    var listTab: ArrayList<SampahItem>? = null
 
-    init {
-        fragments = arrayListOf(
-            PlastikWarnaFragment(),
-            PlastikBeningFragment(),
-            KertasFragment(),
-            LogamFragment(),
-            ElektronikFragment()
-        )
+    override fun getCount(): Int = listTab?.size ?: 0
+
+    override fun getPageTitle(position: Int): CharSequence? = listTab?.get(position)?.kName
+
+    override fun getItemPosition(`object`: Any): Int = POSITION_NONE
+
+    override fun getItem(position: Int): Fragment {
+        return when (listTab?.get(position)?.kName) {
+            "Sampah Kertas" -> TabKatalogFragment(TabKatalogFragment.TYPE_KERTAS)
+            "Sampah Plastik" -> TabKatalogFragment(TabKatalogFragment.TYPE_PLASTIK)
+            "Sampah Logam" -> TabKatalogFragment(TabKatalogFragment.TYPE_LOGAM)
+            else -> TabKatalogFragment(TabKatalogFragment.TYPE_LAIN)
+        }
     }
 
-    override fun getCount(): Int = judulTab.size
-
-    override fun getItem(position: Int): Fragment = fragments[position]
-
-    override fun getPageTitle(position: Int): CharSequence? = judulTab[position]
 }

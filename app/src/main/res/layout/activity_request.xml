@@ -23,7 +23,8 @@
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="8dp">
+        android:gravity="center_vertical"
+        android:padding="40dp">
 
         <TextView
             android:id="@+id/tvnama_sampah"
@@ -42,18 +43,19 @@
             android:layout_height="172dp"
             android:layout_below="@id/tvnama_sampah"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="20dp"
             android:src="@android:color/darker_gray"
             android:visibility="@{viewModel.isUploaded ? View.VISIBLE : View.GONE}"
             app:setImageWithURI="@{uri}" />
 
         <Button
             android:id="@+id/btn_upload"
-            android:layout_width="wrap_content"
+            android:layout_width="172dp"
             android:layout_height="wrap_content"
             android:layout_below="@id/iv_bukti_sampah"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="20dp"
+            android:textColor="@android:color/black"
             android:onClick="@{() -> viewModel.btnUploadOnClick()}"
             android:text="Pilih Gambar"
             android:visibility="@{viewModel.isUploaded ? View.GONE : View.VISIBLE}" />
@@ -64,7 +66,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/btn_upload"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="20dp"
             android:text="@{itemSampah.priceLabel}"
             android:textSize="25sp"
             android:textStyle="bold" />
@@ -74,6 +76,7 @@
             android:layout_height="wrap_content"
             android:layout_alignBaseline="@id/tvharga_sampah"
             android:layout_toEndOf="@id/tvharga_sampah"
+            android:layout_marginEnd="12dp"
             android:text="@{itemSampah.satuan}"
             android:textSize="16sp" />
 
@@ -83,7 +86,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/tvharga_sampah"
             android:layout_centerHorizontal="true"
-            android:layout_marginEnd="8dp"
+            android:layout_marginVertical="8dp"
             android:text="Jumlah Estimasi Kg" />
 
         <LinearLayout
@@ -109,7 +112,8 @@
                 android:hint="@string/estimasi"
                 android:inputType="number"
                 android:text="@={viewModel.jumlahEstimasi}"
-                android:textAlignment="center" />
+                android:textAlignment="center"
+                android:textColor="@android:color/darker_gray"/>
 
             <Button
                 android:id="@+id/btn_tambah"
@@ -136,9 +140,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/pb_request"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="32dp"
             android:onClick="@{() -> viewModel.btnTambahkanOnclick(itemSampah, uri)}"
             android:text="@string/btn_tambah"
+            android:textColor="@android:color/black"
+            android:backgroundTint="@color/colorPrimary"
             android:visibility="@{viewModel.loadingEnabled ? View.GONE : View.VISIBLE}" />
 
     </RelativeLayout>

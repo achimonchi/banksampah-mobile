@@ -116,7 +116,7 @@ class RequestActivity : AppCompatActivity() {
         grantResults: IntArray
     ) {
         if (requestCode == REQUEST_CODE_PERMISSION
-//            && grantResults[0] == PackageManager.PERMISSION_GRANTED
+            && grantResults[0] == PackageManager.PERMISSION_GRANTED
             && grantResults[1] == PackageManager.PERMISSION_GRANTED
         ) {
             CropImage.startPickImageActivity(this)

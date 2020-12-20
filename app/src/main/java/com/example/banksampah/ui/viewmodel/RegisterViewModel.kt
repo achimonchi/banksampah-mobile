@@ -17,6 +17,7 @@ class RegisterViewModel @ViewModelInject constructor(
         const val ACTION_REGISTER_FAILED = "action_register_failed"
         const val ACTION_REGISTER_TIMEOUT = "action_register_timeout"
         const val ACTION_REGISTER_PASSWORD_NOT_MATCH = "action_register_password_not_match"
+        const val ACTION_REGISTER_ONCLICK_LOGIN = "action_register_onclick_login"
     }
 
     val email = MutableLiveData<String>()
@@ -55,6 +56,10 @@ class RegisterViewModel @ViewModelInject constructor(
             loadingEnabled.value = false
             action.value = ACTION_REGISTER_PASSWORD_NOT_MATCH
         }
+    }
+
+    fun onClickLogin() {
+        action.value = ACTION_REGISTER_ONCLICK_LOGIN
     }
 
 }

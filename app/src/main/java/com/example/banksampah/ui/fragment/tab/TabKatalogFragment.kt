@@ -10,7 +10,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.banksampah.R
-import com.example.banksampah.ui.adapter.RecyclerViewAdapter
+import com.example.banksampah.ui.adapter.RecyclerViewSampahAdapter
 import com.example.banksampah.ui.viewmodel.TabViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_kertas.*
@@ -21,7 +21,7 @@ class TabKatalogFragment(
 ) : Fragment() {
 
     private val tabViewModel: TabViewModel by viewModels()
-    private lateinit var adapter: RecyclerViewAdapter
+    private lateinit var sampahAdapter: RecyclerViewSampahAdapter
 
     companion object {
         const val TYPE_KERTAS = "type_kertas"
@@ -35,7 +35,7 @@ class TabKatalogFragment(
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        adapter = RecyclerViewAdapter(tabViewModel)
+        sampahAdapter = RecyclerViewSampahAdapter(tabViewModel)
         return inflater.inflate(R.layout.fragment_kertas, container, false)
     }
 
@@ -54,7 +54,7 @@ class TabKatalogFragment(
     }
 
     private fun onItemUpdate() {
-        adapter.diff.submitList(tabViewModel.list)
+        sampahAdapter.diff.submitList(tabViewModel.list)
     }
 
     private fun connetionTimeout() {
@@ -64,7 +64,7 @@ class TabKatalogFragment(
     private fun setUpRecyclerView() {
         rv_kertas.apply {
             layoutManager = GridLayoutManager(requireContext(), 3)
-            adapter = this@TabKatalogFragment.adapter
+            adapter = this@TabKatalogFragment.sampahAdapter
         }
     }
 

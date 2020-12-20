@@ -97,7 +97,7 @@
                 style="@style/Progressbar"
                 android:layout_width="64dp"
                 android:layout_height="64dp"
-                android:visibility="@{viewModel.loadingEnabled?View.VISIBLE:View.GONE}"
+                android:visibility="@{viewModel.loadingEnabled ? View.VISIBLE:View.GONE}"
                 tools:visibility="gone" />
 
             <com.google.android.material.button.MaterialButton
@@ -110,7 +110,7 @@
                 android:onClick="@{()-> viewModel.login()}"
                 android:text="@string/content_login"
                 android:textColor="@android:color/white"
-                android:visibility="@{viewModel.loadingEnabled?View.GONE:View.VISIBLE}" />
+                android:visibility="@{viewModel.loadingEnabled ? View.GONE:View.VISIBLE}" />
 
             <TextView
                 android:layout_width="wrap_content"

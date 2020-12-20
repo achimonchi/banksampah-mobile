@@ -12,7 +12,7 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.banksampah.R
 import com.example.banksampah.ui.activity.RequestActivity
-import com.example.banksampah.ui.adapter.RecyclerViewAdapter
+import com.example.banksampah.ui.adapter.RecyclerViewSampahAdapter
 import com.example.banksampah.ui.viewmodel.TabViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_kertas.*
@@ -23,7 +23,7 @@ class TabJualSampahFragment(
 ) : Fragment() {
 
     private val tabViewModel: TabViewModel by viewModels()
-    private lateinit var adapter: RecyclerViewAdapter
+    private lateinit var sampahAdapter: RecyclerViewSampahAdapter
 
     companion object {
         const val TYPE_KERTAS = "type_kertas"
@@ -37,15 +37,15 @@ class TabJualSampahFragment(
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        adapter = RecyclerViewAdapter(tabViewModel)
+        sampahAdapter = RecyclerViewSampahAdapter(tabViewModel)
         return inflater.inflate(R.layout.fragment_kertas, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         setUpRecyclerView()
         tabViewModel.apply {
-            action.observe(viewLifecycleOwner, Observer {
-                when (it) {
+            action.observe(viewLifecycleOwner, Observer { action ->
+                when (action) {
                     TabViewModel.ACTION_KERTAS_TIMEOUT -> connetionTimeout()
                     TabViewModel.ACTION_ITEM_UPDATE -> onItemUpdate()
                 }
@@ -61,7 +61,7 @@ class TabJualSampahFragment(
     }
 
     private fun onItemClick(position: Int, isClick: Boolean) {
-        val item = adapter.diff.currentList[position]
+        val item = sampahAdapter.diff.currentList[position]
 
         if (!isClick) {
             val intent = Intent(requireContext(), RequestActivity::class.java)
@@ -73,7 +73,7 @@ class TabJualSampahFragment(
     }
 
     private fun onItemUpdate() {
-        adapter.diff.submitList(tabViewModel.list)
+        sampahAdapter.diff.submitList(tabViewModel.list)
     }
 
     private fun connetionTimeout() {
@@ -83,7 +83,7 @@ class TabJualSampahFragment(
     private fun setUpRecyclerView() {
         rv_kertas.apply {
             layoutManager = GridLayoutManager(requireContext(), 3)
-            adapter = this@TabJualSampahFragment.adapter
+            adapter = this@TabJualSampahFragment.sampahAdapter
         }
     }
 

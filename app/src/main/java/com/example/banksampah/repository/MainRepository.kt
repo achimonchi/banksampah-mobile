@@ -116,4 +116,15 @@ class MainRepository @Inject constructor(
         }
     }
 
+    suspend fun getRequestSampah(token: String): Resource<GetRequestSampahResponse> {
+        requestSampahService.getRequestSampah(token).let { response ->
+            if (response.isSuccessful) {
+                response.body()?.let {
+                    return Resource.Success(it)
+                }
+            }
+            return Resource.Error(response.message())
+        }
+    }
+
 }

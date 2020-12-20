@@ -11,6 +11,7 @@ import com.example.banksampah.R
 import com.example.banksampah.databinding.ActivityLoginBinding
 import com.example.banksampah.ui.viewmodel.LoginViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.android.synthetic.main.activity_login.*
 
 @AndroidEntryPoint
 class LoginActivity : AppCompatActivity() {

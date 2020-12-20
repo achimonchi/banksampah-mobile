@@ -9,9 +9,9 @@ import com.example.banksampah.databinding.ItemGridKatalogBinding
 import com.example.banksampah.model.entity.SampahKategoryItem
 import com.example.banksampah.ui.viewmodel.TabViewModel
 
-class RecyclerViewAdapter(
-    private val recyclerViewModel: TabViewModel? = null
-) : RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder>() {
+class RecyclerViewSampahAdapter(
+    private val tabViewModel: TabViewModel? = null
+) : RecyclerView.Adapter<RecyclerViewSampahAdapter.ViewHolder>() {
 
     val diff = AsyncListDiffer(this, object : DiffUtil.ItemCallback<SampahKategoryItem>() {
         override fun areItemsTheSame(
@@ -44,18 +44,12 @@ class RecyclerViewAdapter(
 
         holder.binding.apply {
             position = itemPosition
-            viewModel = recyclerViewModel
+            viewModel = tabViewModel
             item = itemSelected
         }
     }
 
     override fun getItemCount(): Int = diff.currentList.size
-
-    private var onClickListener: ((SampahKategoryItem) -> Unit)? = null
-
-    fun setOnClickListener(listener: (SampahKategoryItem) -> Unit) {
-        onClickListener = listener
-    }
 
     inner class ViewHolder(val binding: ItemGridKatalogBinding) :
         RecyclerView.ViewHolder(binding.root)

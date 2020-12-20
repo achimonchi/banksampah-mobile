@@ -34,9 +34,15 @@ class RegisterActivity : AppCompatActivity() {
                     RegisterViewModel.ACTION_REGISTER_FAILED -> registerFailed()
                     RegisterViewModel.ACTION_REGISTER_TIMEOUT -> registerFailed()
                     RegisterViewModel.ACTION_REGISTER_PASSWORD_NOT_MATCH -> registerPassNotMatch()
+                    RegisterViewModel.ACTION_REGISTER_ONCLICK_LOGIN -> registerOnClickLogin()
                 }
             })
         }
+    }
+
+    private fun registerOnClickLogin() {
+        finish()
+        startActivity(Intent(this, LoginActivity::class.java))
     }
 
     private fun registerSuccess() {

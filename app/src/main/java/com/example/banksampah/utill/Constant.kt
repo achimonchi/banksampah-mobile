@@ -2,9 +2,9 @@ package com.example.banksampah.utill
 
 object Constant {
 
-    private const val domain = "172.16.40.203"
+    private const val domain = "dev.noobee.id"
 
-    const val BASE_URL = "http://$domain/bank-sampah/backend/mobile/"
-    const val BASE_URL_IMG_SAMPAH = "http://$domain/bank-sampah/backend/uploads/sampah/"
+    const val BASE_URL = "https://$domain/banksampah/mobile/"
+    const val BASE_URL_IMG_SAMPAH = "https://$domain/banksampah/"
 
 }

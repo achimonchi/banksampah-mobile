@@ -1,60 +1,76 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@color/colorWhite"
-    android:elevation="3dp"
-    android:paddingHorizontal="16dp"
-    android:paddingVertical="8dp"
-    android:layout_margin="16dp">
+<layout xmlns:tools="http://schemas.android.com/tools">
 
-    <TextView
-        android:id="@+id/heading1"
-        android:layout_width="wrap_content"
+    <data>
+
+        <variable
+            name="item"
+            type="com.example.banksampah.model.entity.GetRequestSampahResponseItem" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="8dp"
-        android:fontFamily="sans-serif"
-        android:text="Jual Sampah"
-        android:textColor="@color/colorPrimaryDark"
-        android:textSize="16sp"
-        android:textStyle="italic"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/shape"
+        android:elevation="3dp"
+        android:paddingHorizontal="8dp"
+        android:paddingVertical="16dp">
 
-    <TextView
-        android:id="@+id/txtNoTransaksi"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="8dp"
-        android:layout_marginVertical="8dp"
-        android:text="TP202012130001"
-        android:textSize="12sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/heading1" />
+        <TextView
+            android:id="@+id/heading1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="8dp"
+            android:fontFamily="sans-serif"
+            android:text="Jual Sampah"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="16sp"
+            android:textStyle="italic"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Jual Sampah" />
 
-    <TextView
-        android:id="@+id/txtStatus"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="8dp"
-        android:layout_marginVertical="8dp"
-        android:text="Proses"
-        android:textSize="12sp"
-        android:textStyle="bold"
-        android:textColor="@android:color/black"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/txtNoTransaksi" />
+        <TextView
+            android:id="@+id/txtNoTransaksi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="8dp"
+            android:layout_marginVertical="8dp"
+            android:text="@{item.weight}"
+            android:textSize="12sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/heading1"
+            tools:text="TJASLKJD21SSSADLN" />
 
-    <TextView
-        android:id="@+id/txtTanggalTransaksi"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="@id/txtStatus"
-        app:layout_constraintTop_toTopOf="@id/heading1"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:text="Minggu 13 Des, 2020"
-        android:textSize="12sp"
-        />
+        <TextView
+            android:id="@+id/txtStatus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="8dp"
+            android:layout_marginVertical="8dp"
+            android:text="@{item.keterangan}"
+            android:textColor="@android:color/black"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/txtNoTransaksi"
+            tools:text="Proses" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/txtTanggalTransaksi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{item.RDate}"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="@id/txtStatus"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/heading1"
+            tools:text="Minggu 13 Des, 2020" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

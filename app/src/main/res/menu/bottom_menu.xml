@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/homeFragment"
+        android:enabled="true"
+        android:icon="@drawable/ic_home"
+        android:title="@string/beranda" />
+    <item
+        android:id="@+id/riwayatFragment"
+        android:enabled="true"
+        android:icon="@drawable/ic_history"
+        android:title="@string/riwayat" />
+    <!--    <item-->
+    <!--        android:id="@+id/bantuanFragment"-->
+    <!--        android:enabled="true"-->
+    <!--        android:icon="@drawable/ic_help"-->
+    <!--        android:title="@string/bantuan"/>-->
+    <item
+        android:id="@+id/akunFragment"
+        android:enabled="true"
+        android:icon="@drawable/ic_account"
+        android:title="@string/akun" />
+</menu>

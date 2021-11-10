@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/menu_nav_graph"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.basada.banksampah.ui.fragment.HomeFragment"
+        android:label="HomeFragment">
+        <action
+            android:id="@+id/action_homeFragment_to_akunFragment"
+            app:destination="@id/akunFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/akunFragment"
+        android:name="com.basada.banksampah.ui.fragment.AkunFragment"
+        android:label="AkunFragment" />
+    <fragment
+        android:id="@+id/bantuanFragment"
+        android:name="com.basada.banksampah.ui.fragment.BantuanFragment"
+        android:label="BantuanFragment" />
+    <fragment
+        android:id="@+id/riwayatFragment"
+        android:name="com.basada.banksampah.ui.fragment.RiwayatFragment"
+        android:label="RiwayatFragment" />
+
+</navigation>

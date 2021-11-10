@@ -1,0 +1,42 @@
+<resources>
+    <string name="app_name">BASADA</string>
+    <string name="content_register">Register</string>
+    <string name="content_login">Login</string>
+    <string name="content_login_email">Email</string>
+    <string name="content_login_password">Password</string>
+    <string name="content_login_confirm_password">Confirm Password</string>
+
+    <string name="profil_nama">Nama</string>
+    <string name="profil_nohp">Nomor Ponsel</string>
+
+    <string name="simpan">Simpan</string>
+    <string name="ubah_password">Ubah Password</string>
+
+    <string name="beranda">Beranda</string>
+    <string name="riwayat">Riwayat</string>
+    <string name="bantuan">Bantuan</string>
+    <string name="akun">Akun</string>
+
+    <string name="data_nama_lengkap">Nama Lengkap</string>
+    <string name="data_no_hp">Nomor Telepon</string>
+    <string name="data_alamat">Alamat</string>
+    <string name="data_provinsi">Provinsi</string>
+    <string name="data_kota">Kota</string>
+    <string name="data_kodepos">Kode Pos</string>
+
+    <string name="deskripsi">Tombol Back Toolbar</string>
+    <string name="tombol_tambah">+</string>
+    <string name="tombol_kurang">-</string>
+    <string name="estimasi">0</string>
+    <string name="btn_tambah">Tambahkan</string>
+    <string name="data_tanggal_lahir">Tanggal Lahir</string>
+
+    <string-array name="nama_tab">
+        <item>Plastik Warna</item>
+        <item>Plastik Bening</item>
+        <item>Kertas</item>
+        <item>Logam</item>
+        <item>Elektronik</item>
+    </string-array>
+
+</resources>

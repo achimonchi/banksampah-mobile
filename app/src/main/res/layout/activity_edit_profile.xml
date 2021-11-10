@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="com.basada.banksampah.ui.viewmodel.EditProfileViewModel" />
+
+    </data>
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:id="@+id/actionBar"
+            android:layout_width="match_parent"
+            android:layout_height="64dp"
+            android:paddingHorizontal="16dp"
+            android:paddingVertical="8dp">
+
+            <ImageView
+                android:id="@+id/arrow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="8dp"
+                android:onClick="@{() -> viewModel.navigateUp()}"
+                android:src="@drawable/ic_arrow_back" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginStart="16sp"
+                android:layout_toEndOf="@id/arrow"
+                android:fontFamily="sans-serif"
+                android:gravity="center"
+                android:text="Ubah Profil"
+                android:textColor="@android:color/black"
+                android:textSize="18sp" />
+
+            <Button
+                android:id="@+id/btn_changePassword"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:fontFamily="sans-serif"
+                android:textColor="@android:color/black"
+                android:gravity="center"
+                android:onClick="@{() -> viewModel.ubahPassword()}"
+                android:text="@string/ubah_password"
+                android:textSize="12sp" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_below="@id/actionBar"
+            android:background="@color/colorBackground"
+            android:padding="16dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/shape"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/profil_nama">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/txtNama"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@={viewModel.fullNameText}"
+                        tools:text="Fahturrahman Fauzi" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:hint="@string/profil_nohp">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/txtNoHp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@={viewModel.phoneNumberText}"
+                        tools:text="0812321312" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:hint="@string/data_alamat">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/txtAlamat"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@={viewModel.addressText}"
+                        tools:text="Jalan Kakap Nomor 36A" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:hint="@string/data_kota">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/txtKota"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@={viewModel.cityText}"
+                        tools:text="Pekanbaru" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:hint="@string/data_provinsi">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/txtProvinsi"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@={viewModel.provinceText}"
+                        tools:text="Riau" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:hint="@string/data_kodepos">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/txtKodePos"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@={viewModel.postcodeText}"
+                        tools:text="28288" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <ProgressBar
+                    style="@style/Progressbar"
+                    android:layout_width="64dp"
+                    android:layout_height="64dp"
+                    android:visibility="@{viewModel.loadingEnabled ? View.VISIBLE : View.GONE}"
+                    tools:visibility="gone" />
+
+                <Button
+                    android:id="@+id/btn_changeProfile"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:backgroundTint="@color/colorPrimaryDark"
+                    android:fontFamily="sans-serif"
+                    android:gravity="center"
+                    android:onClick="@{() -> viewModel.updateProfile()}"
+                    android:padding="10dp"
+                    android:text="@string/simpan"
+                    android:textSize="15sp"
+                    android:visibility="@{viewModel.loadingEnabled ? View.GONE : View.VISIBLE}" />
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+</layout>
+
+

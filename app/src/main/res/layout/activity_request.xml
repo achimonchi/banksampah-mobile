@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="uri"
+            type="android.net.Uri" />
+
+        <variable
+            name="viewModel"
+            type="com.basada.banksampah.ui.viewmodel.RequestViewModel" />
+
+        <variable
+            name="itemSampah"
+            type="com.basada.banksampah.model.entity.SampahKategoryItem" />
+
+    </data>
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_vertical"
+        android:padding="40dp">
+
+        <TextView
+            android:id="@+id/tvnama_sampah"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:text="@{itemSampah.JName}"
+            android:textColor="@android:color/black"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            tools:text="Plastik Kresek" />
+
+        <ImageView
+            android:id="@+id/iv_bukti_sampah"
+            android:layout_width="172dp"
+            android:layout_height="172dp"
+            android:layout_below="@id/tvnama_sampah"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:src="@android:color/darker_gray"
+            android:visibility="@{viewModel.isUploaded ? View.VISIBLE : View.GONE}"
+            app:setImageWithURI="@{uri}" />
+
+        <Button
+            android:id="@+id/btn_upload"
+            android:layout_width="172dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/iv_bukti_sampah"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:onClick="@{() -> viewModel.btnUploadOnClick()}"
+            android:text="Pilih Gambar"
+            android:textColor="@android:color/black"
+            android:visibility="@{viewModel.isUploaded ? View.GONE : View.VISIBLE}" />
+
+        <TextView
+            android:id="@+id/tvharga_sampah"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/btn_upload"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:text="@{itemSampah.priceLabel}"
+            android:textSize="25sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@id/tvharga_sampah"
+            android:layout_marginEnd="12dp"
+            android:layout_toEndOf="@id/tvharga_sampah"
+            android:text="@{itemSampah.satuan}"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/tvjumlah_estimasi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tvharga_sampah"
+            android:layout_centerHorizontal="true"
+            android:layout_marginVertical="8dp"
+            android:text="Jumlah Estimasi Kg" />
+
+        <LinearLayout
+            android:id="@+id/ll_min"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tvjumlah_estimasi"
+            android:layout_centerHorizontal="true"
+            android:orientation="horizontal"
+            android:visibility="@{viewModel.loadingMinMax ? View.GONE : View.VISIBLE}">
+
+            <TextView
+                android:id="@+id/tvmin_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Minimal Angkut : "
+                android:textColor="@android:color/black"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvmin_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{viewModel.minSampah}"
+                android:textColor="@android:color/black"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+        <ProgressBar
+            android:id="@+id/pb_minmax"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:layout_below="@id/tvjumlah_estimasi"
+            android:layout_centerHorizontal="true"
+            android:visibility="@{viewModel.loadingMinMax ? View.VISIBLE : View.GONE}"
+            tools:visibility="gone" />
+
+        <EditText
+            android:id="@+id/et_jumlah_estimasi"
+            android:layout_width="64dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/ll_min"
+            android:layout_centerHorizontal="true"
+            android:hint="@string/estimasi"
+            android:inputType="numberDecimal"
+            android:text="@={viewModel.jumlahEstimasi}"
+            android:textAlignment="center"
+            android:textColor="@android:color/black"
+            android:visibility="@{viewModel.loadingMinMax ? View.GONE : View.VISIBLE}" />
+
+        <TextView
+            android:id="@+id/tv_jadwal_penjemputan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/et_jumlah_estimasi"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="16dp"
+            android:text="Jadwal Penjemputan" />
+
+        <androidx.appcompat.widget.AppCompatSpinner
+            android:id="@+id/sp_request"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_jadwal_penjemputan"
+            android:layout_centerHorizontal="true"
+            android:layout_marginVertical="8dp"
+            android:selectedItemPosition="@={viewModel.selectedItem}"
+            app:setEntries="@{viewModel.listItem}" />
+
+        <TextView
+            android:id="@+id/tv_induk_penjembutan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/sp_request"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="16dp"
+            android:text="Admin Induk" />
+
+        <androidx.appcompat.widget.AppCompatSpinner
+            android:id="@+id/sp_induk"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_induk_penjembutan"
+            android:layout_centerHorizontal="true"
+            android:layout_marginVertical="8dp"
+            android:selectedItemPosition="@={viewModel.selectedItemAdmin}"
+            app:setEntries="@{viewModel.listItemAdmin}" />
+
+        <ProgressBar
+            android:id="@+id/pb_request"
+            style="@style/Progressbar"
+            android:layout_width="72dp"
+            android:layout_height="72dp"
+            android:layout_below="@id/sp_induk"
+            android:layout_centerHorizontal="true"
+            android:visibility="@{viewModel.loadingEnabled ? View.VISIBLE : View.GONE}"
+            tools:visibility="gone" />
+
+        <Button
+            android:id="@+id/btn_tambahkan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/sp_induk"
+            android:layout_marginTop="8dp"
+            android:backgroundTint="@color/colorPrimary"
+            android:onClick="@{() -> viewModel.btnTambahkanOnclick(itemSampah, uri)}"
+            android:text="@string/btn_tambah"
+            android:textColor="@android:color/black"
+            android:visibility="@{viewModel.loadingEnabled ? View.GONE : View.VISIBLE}" />
+
+    </RelativeLayout>
+
+</layout>

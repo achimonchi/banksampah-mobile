@@ -1,5 +1,6 @@
 package com.basada.banksampah.ui.viewmodel
 
+import android.util.Log
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.viewModelScope
 import com.basada.banksampah.model.entity.SampahItem
@@ -34,7 +35,9 @@ class SampahViewModel @ViewModelInject constructor(
                     is Resource.Success -> {
                         loadingEnabled.postValue(false)
                         response.data?.data?.forEach { item ->
+
                             item?.let { listTitle?.add(it) }
+
                         }
                         action.postValue(ACTION_ITEM_UPDATE)
                     }

@@ -4,6 +4,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import com.basada.banksampah.model.entity.SampahItem
+import com.basada.banksampah.ui.fragment.tab.TabJualSampahFragment
 import com.basada.banksampah.ui.fragment.tab.TabKatalogFragment
 
 class KatalogPagerAdapter(
@@ -22,12 +23,14 @@ class KatalogPagerAdapter(
     override fun getItemPosition(`object`: Any): Int = POSITION_NONE
 
     override fun getItem(position: Int): Fragment {
-        return when (listTab?.get(position)?.kName) {
-            "Sampah Kertas" -> TabKatalogFragment(TabKatalogFragment.TYPE_KERTAS)
-            "Sampah Plastik" -> TabKatalogFragment(TabKatalogFragment.TYPE_PLASTIK)
-            "Sampah Logam" -> TabKatalogFragment(TabKatalogFragment.TYPE_LOGAM)
-            else -> TabKatalogFragment(TabKatalogFragment.TYPE_LAIN)
-        }
+        val id = listTab?.get(position)?.id.toString();
+        return TabKatalogFragment(TabKatalogFragment.TYPE_KERTAS, id)
+//        return when (listTab?.get(position)?.kName) {
+//            "Sampah Kertas" -> TabKatalogFragment(TabKatalogFragment.TYPE_KERTAS)
+//            "Sampah Plastik" -> TabKatalogFragment(TabKatalogFragment.TYPE_PLASTIK)
+//            "Sampah Logam" -> TabKatalogFragment(TabKatalogFragment.TYPE_LOGAM)
+//            else -> TabKatalogFragment(TabKatalogFragment.TYPE_LAIN)
+//        }
     }
 
 }

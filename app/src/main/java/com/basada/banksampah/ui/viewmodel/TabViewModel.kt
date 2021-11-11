@@ -30,12 +30,12 @@ class TabViewModel @ViewModelInject constructor(
     val list = ArrayList<SampahKategoryItem>()
     val actionItemClick = MutableLiveData<Int>()
 
-    fun setGrid() {
+    fun setGrid(fkCategory: String) {
         loadingEnabled.value = true
         viewModelScope.launch(Dispatchers.IO) {
             try {
                 when (val response =
-                    repository.getSampahByCategory(Session.token ?: "", getTypeById(type))) {
+                    repository.getSampahByCategory(Session.token ?: "", fkCategory?: "")) {
                     is Resource.Success -> {
                         loadingEnabled.postValue(false)
 

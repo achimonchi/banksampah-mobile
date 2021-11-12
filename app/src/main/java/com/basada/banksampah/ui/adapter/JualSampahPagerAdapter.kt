@@ -24,14 +24,7 @@ class JualSampahPagerAdapter(
 
     override fun getItem(position: Int): Fragment {
         val id = listTab?.get(position)?.id.toString();
-        return TabJualSampahFragment(TabJualSampahFragment.TYPE_KERTAS, id)
-//        return TabJualSampahFragment(listTab?.get(position)?.kName.toString(), id)
-//        return when (listTab?.get(position)?.kName) {
-//            "Sampah Kertas" -> TabJualSampahFragment(TabJualSampahFragment.TYPE_KERTAS)
-//            "Sampah Plastik" -> TabJualSampahFragment(TabJualSampahFragment.TYPE_PLASTIK)
-//            "Sampah Logam" -> TabJualSampahFragment(TabJualSampahFragment.TYPE_LOGAM)
-//            else -> TabJualSampahFragment(TabJualSampahFragment.TYPE_LAIN)
-//        }
+        return TabJualSampahFragment(id)
     }
 
 }

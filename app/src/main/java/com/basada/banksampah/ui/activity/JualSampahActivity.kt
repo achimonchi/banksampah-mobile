@@ -10,6 +10,7 @@ import com.basada.banksampah.databinding.ActivitySampahBinding
 import com.basada.banksampah.ui.adapter.JualSampahPagerAdapter
 import com.basada.banksampah.ui.viewmodel.SampahViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.runBlocking
 
 @AndroidEntryPoint
 class JualSampahActivity : AppCompatActivity() {
@@ -37,8 +38,9 @@ class JualSampahActivity : AppCompatActivity() {
                     SampahViewModel.ACTION_ITEM_UPDATE -> onItemUpdate()
                 }
             })
-            setTitle()
+
         }
+        sampahViewModel.setTitle()
 
         dataBinding.apply {
             tablayoutKatalog.setupWithViewPager(dataBinding.viewpagerKatalog)

@@ -17,7 +17,6 @@ import kotlinx.android.synthetic.main.fragment_kertas.*
 
 @AndroidEntryPoint
 class TabKatalogFragment(
-    val type: String,
     val id: String
 ) : Fragment() {
 
@@ -49,9 +48,8 @@ class TabKatalogFragment(
                     TabViewModel.ACTION_ITEM_UPDATE -> onItemUpdate()
                 }
             })
-            type = this@TabKatalogFragment.type
         }
-        tabViewModel.setGrid(id.toString())
+        tabViewModel.setGrid(id)
     }
 
     private fun onItemUpdate() {

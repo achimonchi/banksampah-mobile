@@ -25,8 +25,6 @@ class TabViewModel @ViewModelInject constructor(
         const val ACTION_ITEM_UPDATE = "actoin_item_update"
         const val ACTION_ITEM_ONCLICK = "action_item_onclick"
     }
-
-    var type = ""
     val list = ArrayList<SampahKategoryItem>()
     val actionItemClick = MutableLiveData<Int>()
 
@@ -62,16 +60,6 @@ class TabViewModel @ViewModelInject constructor(
     fun onClickItem(position: Int) {
         actionItemClick.value = position
         action.value = ACTION_ITEM_ONCLICK
-    }
-
-    private fun getTypeById(type: String): String {
-        return when (type) {
-            TYPE_KERTAS -> "ea6988222a32f1af2ac2fe1353d661f2"
-            TYPE_LOGAM -> "a9f9ad04853e5a154256ecc2a2b0009a"
-            TYPE_PLASTIK -> "07435eb38c61f7883c4b66da088c67a2"
-            TYPE_LAIN -> "07435eb38c61f7883c4b66da088c67a2"
-            else -> ""
-        }
     }
 
 }

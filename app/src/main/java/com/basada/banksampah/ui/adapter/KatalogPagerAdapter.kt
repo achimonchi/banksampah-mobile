@@ -24,13 +24,7 @@ class KatalogPagerAdapter(
 
     override fun getItem(position: Int): Fragment {
         val id = listTab?.get(position)?.id.toString();
-        return TabKatalogFragment(TabKatalogFragment.TYPE_KERTAS, id)
-//        return when (listTab?.get(position)?.kName) {
-//            "Sampah Kertas" -> TabKatalogFragment(TabKatalogFragment.TYPE_KERTAS)
-//            "Sampah Plastik" -> TabKatalogFragment(TabKatalogFragment.TYPE_PLASTIK)
-//            "Sampah Logam" -> TabKatalogFragment(TabKatalogFragment.TYPE_LOGAM)
-//            else -> TabKatalogFragment(TabKatalogFragment.TYPE_LAIN)
-//        }
+        return TabKatalogFragment(id)
     }
 
 }

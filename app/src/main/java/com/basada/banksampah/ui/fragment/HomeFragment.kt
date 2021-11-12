@@ -108,7 +108,7 @@ class HomeFragment : Fragment() {
 
     private fun kertasOnClick() {
         val intent = Intent(requireContext(), KatalogActivity::class.java).apply {
-            putExtra(KatalogActivity.EXTRA_PAGE, 0)
+            putExtra(KatalogActivity.EXTRA_PAGE, "kertas")
         }
         startActivity(intent)
     }

@@ -21,7 +21,6 @@ import kotlinx.android.synthetic.main.fragment_kertas.*
 
 @AndroidEntryPoint
 class TabJualSampahFragment(
-    val type: String,
     val id: String
 ) : Fragment() {
 
@@ -46,7 +45,6 @@ class TabJualSampahFragment(
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         setUpRecyclerView()
-        Log.d("Load item with id : ",id);
         tabViewModel.apply {
             action.observe(viewLifecycleOwner, Observer { action ->
                 when (action) {
@@ -55,13 +53,11 @@ class TabJualSampahFragment(
                     TabViewModel.ACTION_ITEM_ONCLICK -> onItemClick()
                 }
             })
-            type = this@TabJualSampahFragment.type
         }
         tabViewModel.setGrid(id)
     }
 
     private fun onItemClick() {
-        Log.d("Item di klik : ",id);
         tabViewModel.actionItemClick.value?.let { position ->
             try {
                 val item = sampahAdapter.diff.currentList[position]
@@ -75,18 +71,6 @@ class TabJualSampahFragment(
     }
 
     private fun onItemUpdate() {
-        Log.d("Item Update w ID : ",id);
-        Log.d("Item Update w Type : ",type);
-        Log.d("Tab View Model List : ",tabViewModel.list.toString());
-        var obj: SampahKategoryItem = tabViewModel.list.get(0);
-        for(e in tabViewModel.list){
-            if(e.fkKategori == id) {
-                obj = e;
-            }
-        }
-        Log.d("Item Selected w ID:",obj.fkKategori.toString());
-        Log.d("Item Selected w name:",obj.jName.toString());
-
         sampahAdapter.diff.submitList(tabViewModel.list)
     }
 

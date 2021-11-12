@@ -1,15 +1,21 @@
 package com.basada.banksampah.ui.activity
 
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.get
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import com.basada.banksampah.R
 import com.basada.banksampah.databinding.ActivitySampahBinding
+import com.basada.banksampah.model.entity.SampahItem
 import com.basada.banksampah.ui.adapter.KatalogPagerAdapter
 import com.basada.banksampah.ui.viewmodel.SampahViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.async
+import kotlinx.coroutines.runBlocking
 
 @AndroidEntryPoint
 class KatalogActivity : AppCompatActivity() {
@@ -42,12 +48,19 @@ class KatalogActivity : AppCompatActivity() {
                     SampahViewModel.ACTION_ITEM_UPDATE -> onItemUpdate()
                 }
             })
+
             setTitle()
         }
+
+
 
         dataBinding.apply {
             tablayoutKatalog.setupWithViewPager(dataBinding.viewpagerKatalog)
             viewpagerKatalog.adapter = this@KatalogActivity.adapter
+            val getFromIntent = intent.getStringExtra(EXTRA_PAGE)
+            Log.d("Debug intent : ", getFromIntent.toString())
+
+            Log.d("Debug kategori", sampahViewModel.listTitle.toString())
             viewpagerKatalog.apply {
                 postDelayed({
                     setCurrentItem(intent.getIntExtra(EXTRA_PAGE, 0), true)
